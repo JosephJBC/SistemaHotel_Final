@@ -16,6 +16,7 @@ namespace Controlador
         List<Habitacion> listaHabitaciones = new List<Habitacion>();
         public object llenarTablar;
         conexion con = null;
+        DatosReserva datosR = null;   
         public int GetcantidadLista()
         {
             return reservas.Count;
@@ -94,6 +95,7 @@ namespace Controlador
             nuevaReserva.Calcular_Totales();
             //Guardar en la lista
             reservas.Add(nuevaReserva);
+            RegistarReseraBDD(nuevaReserva);
             return nuevaReserva.ToString();
         }
 
@@ -392,6 +394,31 @@ namespace Controlador
             {
                 MessageBox.Show("Conexion exitosa", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 con.cerrar(); 
+            }
+            else if (res[0] == '0')
+            {
+                MessageBox.Show("Error de conexion: " + res, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void RegistarReseraBDD(Reserva nuevaReserva)
+        {
+            con = new conexion();
+            string res = con.conectar();
+            datosR = new DatosReserva();
+            string resp = "";
+            if (res[0] == '1')
+            {
+                resp = datosR.RegistrarReserva(nuevaReserva, con.Cn);
+                if(resp[0] == '1')
+                {
+                    MessageBox.Show("Reserva registrada en la base de datos", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Error al registrar la reserva en la base de datos: " + resp, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                con.cerrar();
             }
             else if (res[0] == '0')
             {
