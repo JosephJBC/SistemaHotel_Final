@@ -26,14 +26,14 @@ namespace Controlador
             if (string.IsNullOrEmpty(nombres) || string.IsNullOrEmpty(ci) || string.IsNullOrEmpty(telefono) || string.IsNullOrEmpty(correo)
                 || string.IsNullOrEmpty(nacionalidad))
             {
-                MessageBox.Show("ERROR: Se necesitan todos los campos llenos");
+                MessageBox.Show("ERROR: Se necesitan todos los campos llenos", "Error de validacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false; 
             }
             else 
             {
                 if (!EsCorreo(correo))
                 {
-                    MessageBox.Show("El correo no tiene un formato correcto");
+                    MessageBox.Show("El correo no tiene un formato correcto", "Error de validacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false; 
                 }
             }
@@ -107,6 +107,7 @@ namespace Controlador
                     habitacion.Precio);
             }
         }
+
         private void llenarHabitacion()
         {
             listaHabitaciones.Clear();
@@ -223,6 +224,53 @@ namespace Controlador
                 }
             }
         }
+        //
+        public void LlenarComboTiposHabitacion(ComboBox cmbHabitacion)
+        {
+            cmbHabitacion.Items.Clear();
+            cmbHabitacion.Items.Add("Todos");
+            cmbHabitacion.Items.Add("Matrimonial");
+            cmbHabitacion.Items.Add("Simple");
+            cmbHabitacion.Items.Add("Doble");
+            cmbHabitacion.Items.Add("Suite");
+            cmbHabitacion.Items.Add("Familiar");
+            cmbHabitacion.SelectedIndex = 0;
+        }
+        // Filtrar por tipo de habitación
+        public int FiltrarPorTipoHabitacion(string tipoHabitacion, DataGridView dgvReserva)
+        {
+            dgvReserva.Rows.Clear();
+            int numeroFila = 1;
+
+            foreach (Reserva r in reservas)
+            {
+                if (tipoHabitacion == "Todos" ||
+                    (r.Habitacion != null && r.Habitacion.Tipo_Habitacion == tipoHabitacion))
+                {
+                    LlenarFilaReserva(dgvReserva, r, numeroFila);
+                    numeroFila++;
+                }
+            }
+            return numeroFila - 1; // Retorna cantidad de resultados
+        }
+
+        // Filtrar por nacionalidad
+        public int FiltrarPorNacionalidad(string nacionalidad, DataGridView dgvReserva)
+        {
+            dgvReserva.Rows.Clear();
+            int numeroFila = 1;
+
+            foreach (Reserva r in reservas)
+            {
+                if (r.Huesped != null &&
+                    r.Huesped.Nacionalidad.ToLower().Contains(nacionalidad.ToLower()))
+                {
+                    LlenarFilaReserva(dgvReserva, r, numeroFila);
+                    numeroFila++;
+                }
+            }
+            return numeroFila - 1;
+        }
 
         public void EliminarReserva(int indice, DataGridView dgvReserva)
         {
@@ -235,7 +283,7 @@ namespace Controlador
                 dgvReserva.Rows.RemoveAt(indice);
                 reservas.RemoveAll(r => r.Huesped.Cedula == cedula);
 
-                MessageBox.Show("Registro eliminado. La reserva de " + cedula + " se eliminó correctamente!");
+                MessageBox.Show("Registro eliminado. La reserva de " + cedula + " se elimino correctamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -316,24 +364,21 @@ namespace Controlador
 
             if (reservaExistente == null)
             {
-                MessageBox.Show("No se encontró la reserva a actualizar");
+                MessageBox.Show("No se encontro la reserva a actualizar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            // Actualizar datos del huésped
             reservaExistente.Huesped.Nombres = nombres;
             reservaExistente.Huesped.Cedula = ci;
             reservaExistente.Huesped.Celular = telefono;
             reservaExistente.Huesped.Correo = correo;
             reservaExistente.Huesped.Nacionalidad = nacionalidad;
 
-            // Actualizar datos de la reserva
             reservaExistente.Fecha_Llegada = fechaLlegada;
             reservaExistente.Fecha_Salida = fechaSalida;
             reservaExistente.Cantidad_Adulto = adultos;
             reservaExistente.Cantidad_Ninios = ninos;
 
-            // Recalcular totales (por si cambiaron las fechas)
             reservaExistente.Calcular_Totales();
 
             return true;
@@ -345,12 +390,12 @@ namespace Controlador
             string res = con.conectar();
             if (res[0] == '1')
             {
-                MessageBox.Show("Conexión exitosa");
+                MessageBox.Show("Conexion exitosa", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 con.cerrar(); 
             }
             else if (res[0] == '0')
             {
-                MessageBox.Show("Error de conexión: " + res);
+                MessageBox.Show("Error de conexion: " + res, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

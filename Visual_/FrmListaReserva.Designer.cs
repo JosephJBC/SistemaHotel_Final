@@ -236,6 +236,7 @@
             this.btnNacionalidad.TabIndex = 3;
             this.btnNacionalidad.Text = "Filtrar";
             this.btnNacionalidad.UseVisualStyleBackColor = true;
+            this.btnNacionalidad.Click += new System.EventHandler(this.btnNacionalidad_Click);
             // 
             // lblHabitacion
             // 
@@ -262,6 +263,7 @@
             this.btnHabitacion.TabIndex = 6;
             this.btnHabitacion.Text = "Filtrar";
             this.btnHabitacion.UseVisualStyleBackColor = true;
+            this.btnHabitacion.Click += new System.EventHandler(this.btnHabitacion_Click);
             // 
             // FrmListaReserva
             // 

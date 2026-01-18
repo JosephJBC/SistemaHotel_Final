@@ -32,7 +32,7 @@ namespace Visual_
             }
             else
             {
-                MessageBox.Show("Seleccione una fila para eliminar");
+                MessageBox.Show("Seleccione una fila para eliminar", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

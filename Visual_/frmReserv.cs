@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Controlador;
 
 namespace Visual_
 {
@@ -36,7 +35,7 @@ namespace Visual_
                 nacionalidad = txtNacionalidad.Text.Trim();
             if (cmbHabitacion.SelectedItem == null || cmbServicios.SelectedItem == null)
             {
-                MessageBox.Show("Seleccione una habitacion y un servicio.");
+                MessageBox.Show("Seleccione una habitacion y un servicio", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             string Habitaciones = cmbHabitacion.SelectedItem.ToString(), Servicios = cmbServicios.SelectedItem.ToString();
@@ -54,7 +53,7 @@ namespace Visual_
                     fechaLlegada, fechaSalida, adultos, ninos, precioHabitacionActual, 
                     precioServicioActual, indexHab, indexServ); 
                 txtContenido.Text = recibo;
-                MessageBox.Show("Reserva realizada con exito");
+                MessageBox.Show("Reserva realizada con exito", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -62,7 +61,7 @@ namespace Visual_
         {
             char c = e.KeyChar;
 
-            // Si no es letra, no es espacio y no es tecla de control borrar se bloquea.
+            // Si no es letra no es espacio y no es tecla de control borrar se bloquea.
             if (!char.IsLetter(c) && c != ' ' && !char.IsControl(c))
             {
                 e.Handled = true;
@@ -74,7 +73,7 @@ namespace Visual_
         {
             char c = e.KeyChar;
 
-            // Si no es dígito y no es borrar se bloquea.
+            // Si no es digito y no es borrar se bloquea.
             if (!char.IsDigit(c) && !char.IsControl(c))
             {
                 e.Handled = true;
@@ -110,7 +109,7 @@ namespace Visual_
         {
             int indexHab = cmbHabitacion.SelectedIndex;
             int indexServ = cmbServicios.SelectedIndex;
-            // Calcular Días
+            // Calcular Dias
             TimeSpan diferencia = dtpSalida.Value.Date - dtpLlegada.Value.Date;
             int dias = diferencia.Days;
             if (dias < 1) dias = 1;

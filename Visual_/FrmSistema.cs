@@ -39,31 +39,44 @@ namespace Visual_
             }
             else
             {
-                MessageBox.Show("No hay reservas registradas");
+                MessageBox.Show("No hay reservas registradas", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }   
+        }
+
+        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (admRes.GetcantidadLista() > 0)
+            {
+                FrmEliminarReserva frmElmRes = new FrmEliminarReserva();
+                frmElmRes.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No hay reservas registradas", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void editarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (admRes.GetcantidadLista() > 0)
+            {
+                FrmEditarReserva frmEdiRes = new FrmEditarReserva();
+                frmEdiRes.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No hay reservas registradas", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
         private void auotToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmAcercaDe ventanaAutor = new FrmAcercaDe();
             ventanaAutor.ShowDialog();
-        }
-
-        private void eliminarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmEliminarReserva frmElmRes = new FrmEliminarReserva();
-            frmElmRes.ShowDialog();
-        }
-
-        private void editarToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FrmEditarReserva frmEdiRes = new FrmEditarReserva();
-            frmEdiRes.ShowDialog();
         }
 
         private void conexionToolStripMenuItem_Click(object sender, EventArgs e)
