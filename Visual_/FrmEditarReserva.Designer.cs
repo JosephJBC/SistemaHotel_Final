@@ -103,7 +103,7 @@
             this.colSubTotal,
             this.ColIva,
             this.colTotal});
-            this.dgvReserva.Location = new System.Drawing.Point(26, 128);
+            this.dgvReserva.Location = new System.Drawing.Point(22, 131);
             this.dgvReserva.Name = "dgvReserva";
             this.dgvReserva.ReadOnly = true;
             this.dgvReserva.RowHeadersWidth = 51;
@@ -312,13 +312,14 @@
             this.btnEditar.TabIndex = 10;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
+            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click_1);
             // 
             // btnConfirmar
             // 
             this.btnConfirmar.BackColor = System.Drawing.Color.SteelBlue;
             this.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirmar.ForeColor = System.Drawing.Color.White;
-            this.btnConfirmar.Location = new System.Drawing.Point(611, 697);
+            this.btnConfirmar.Location = new System.Drawing.Point(611, 711);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(185, 43);
             this.btnConfirmar.TabIndex = 21;
@@ -332,7 +333,7 @@
             this.groupBox3.Controls.Add(this.numAdultos);
             this.groupBox3.Controls.Add(this.lblNinos);
             this.groupBox3.Controls.Add(this.lblAdulto);
-            this.groupBox3.Location = new System.Drawing.Point(785, 495);
+            this.groupBox3.Location = new System.Drawing.Point(795, 502);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(278, 155);
             this.groupBox3.TabIndex = 19;
@@ -396,7 +397,7 @@
             // dtpSalida
             // 
             this.dtpSalida.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpSalida.Location = new System.Drawing.Point(441, 573);
+            this.dtpSalida.Location = new System.Drawing.Point(441, 586);
             this.dtpSalida.Name = "dtpSalida";
             this.dtpSalida.Size = new System.Drawing.Size(200, 22);
             this.dtpSalida.TabIndex = 18;
@@ -404,7 +405,7 @@
             // dtpLlegada
             // 
             this.dtpLlegada.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpLlegada.Location = new System.Drawing.Point(441, 517);
+            this.dtpLlegada.Location = new System.Drawing.Point(441, 530);
             this.dtpLlegada.Name = "dtpLlegada";
             this.dtpLlegada.Size = new System.Drawing.Size(200, 22);
             this.dtpLlegada.TabIndex = 17;
@@ -412,7 +413,7 @@
             // lblFechaSalida
             // 
             this.lblFechaSalida.AutoSize = true;
-            this.lblFechaSalida.Location = new System.Drawing.Point(312, 573);
+            this.lblFechaSalida.Location = new System.Drawing.Point(312, 586);
             this.lblFechaSalida.Name = "lblFechaSalida";
             this.lblFechaSalida.Size = new System.Drawing.Size(107, 16);
             this.lblFechaSalida.TabIndex = 16;
@@ -421,7 +422,7 @@
             // lblFechaLLegada
             // 
             this.lblFechaLLegada.AutoSize = true;
-            this.lblFechaLLegada.Location = new System.Drawing.Point(312, 523);
+            this.lblFechaLLegada.Location = new System.Drawing.Point(312, 536);
             this.lblFechaLLegada.Name = "lblFechaLLegada";
             this.lblFechaLLegada.Size = new System.Drawing.Size(116, 16);
             this.lblFechaLLegada.TabIndex = 15;
@@ -532,7 +533,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1349, 920);
+            this.ClientSize = new System.Drawing.Size(1349, 768);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.dtpSalida);

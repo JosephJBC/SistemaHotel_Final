@@ -169,51 +169,57 @@ namespace Controlador
             }
             return 0; 
         }
+        // METODO PARA LLENAR TABLA Y TAMBIEN EDITAR Y BUSCAR
+        private void LlenarFilaReserva(DataGridView dgvReserva, Reserva r, int numeroFila)
+        {
+            int indice = dgvReserva.Rows.Add();
+            dgvReserva.Rows[indice].Cells["colNro"].Value = numeroFila;
+            dgvReserva.Rows[indice].Cells["colNombres"].Value = r.Huesped.Nombres;
+            dgvReserva.Rows[indice].Cells["colCi"].Value = r.Huesped.Cedula;
+            dgvReserva.Rows[indice].Cells["colTelefono"].Value = r.Huesped.Celular;
+            dgvReserva.Rows[indice].Cells["colCorreo"].Value = r.Huesped.Correo;
+            dgvReserva.Rows[indice].Cells["colNacionalidad"].Value = r.Huesped.Nacionalidad;
 
+            if (r.Habitacion != null)
+            {
+                dgvReserva.Rows[indice].Cells["colHabitacion"].Value = r.Habitacion.Num_Habitacion + " (" + r.Habitacion.Tipo_Habitacion + ")";
+            }
+            else
+            {
+                dgvReserva.Rows[indice].Cells["colHabitacion"].Value = "Sin asignar";
+            }
+
+            dgvReserva.Rows[indice].Cells["colReserva"].Value = r.Fecha_De_Reserva.ToShortDateString();
+            dgvReserva.Rows[indice].Cells["colLlegada"].Value = r.Fecha_Llegada.ToShortDateString();
+            dgvReserva.Rows[indice].Cells["colSalida"].Value = r.Fecha_Salida.ToShortDateString();
+            dgvReserva.Rows[indice].Cells["colAdultos"].Value = r.Cantidad_Adulto;
+            dgvReserva.Rows[indice].Cells["colNinos"].Value = r.Cantidad_Ninios;
+
+            if (r.detalles_Reserva != null && r.detalles_Reserva.Count > 0)
+            {
+                dgvReserva.Rows[indice].Cells["collServicios"].Value = r.detalles_Reserva[0].Descripcion;
+            }
+            else
+            {
+                dgvReserva.Rows[indice].Cells["collServicios"].Value = "Ninguno";
+            }
+
+            dgvReserva.Rows[indice].Cells["colSubTotal"].Value = r.Sub_Total.ToString("C2");
+            dgvReserva.Rows[indice].Cells["ColIva"].Value = r.Iva.ToString("C2");
+            dgvReserva.Rows[indice].Cells["colTotal"].Value = r.Total.ToString("C2");
+        }
+
+        //LLENAR TABLA 
         public void LlenarTabla(DataGridView dgvReserva)
         {
             dgvReserva.Rows.Clear();
-            int indice = 0;
+            int numeroFila = 0;
             if (reservas.Count > 0)
             {
-                foreach (Reserva r in reservas) 
+                foreach (Reserva r in reservas)
                 {
-                    indice = dgvReserva.Rows.Add();
-                    dgvReserva.Rows[indice].Cells["colNro"].Value = indice+1;
-                    dgvReserva.Rows[indice].Cells["colNombres"].Value = r.Huesped.Nombres;
-                    dgvReserva.Rows[indice].Cells["colCi"].Value = r.Huesped.Cedula;
-                    dgvReserva.Rows[indice].Cells["colTelefono"].Value = r.Huesped.Celular;
-                    dgvReserva.Rows[indice].Cells["colCorreo"].Value = r.Huesped.Correo;
-                    dgvReserva.Rows[indice].Cells["colNacionalidad"].Value = r.Huesped.Nacionalidad;
-                    //DATOS DE LA HABITACIÓN
-                    if (r.Habitacion != null)
-                    {
-                        dgvReserva.Rows[indice].Cells["colHabitacion"].Value = r.Habitacion.Num_Habitacion + " (" + r.Habitacion.Tipo_Habitacion + ")";
-                    }
-                    else
-                    {
-                        dgvReserva.Rows[indice].Cells["colHabitacion"].Value = "Sin asignar";
-                    }
-                    //FECHAS Y CANTIDADES
-                    dgvReserva.Rows[indice].Cells["colReserva"].Value = r.Fecha_De_Reserva.ToShortDateString();
-                    dgvReserva.Rows[indice].Cells["colLlegada"].Value = r.Fecha_Llegada.ToShortDateString();
-                    dgvReserva.Rows[indice].Cells["colSalida"].Value = r.Fecha_Salida.ToShortDateString();
-                    dgvReserva.Rows[indice].Cells["colAdultos"].Value = r.Cantidad_Adulto;
-                    dgvReserva.Rows[indice].Cells["colNinos"].Value = r.Cantidad_Ninios;
-                    // Servicios
-                    dgvReserva.Rows[indice].Cells["collServicios"].Value = "Ver detalle";
-                    if (r.detalles_Reserva != null && r.detalles_Reserva.Count > 0)
-                    {
-                        dgvReserva.Rows[indice].Cells["collServicios"].Value = r.detalles_Reserva[0].Descripcion;
-                    }
-                    else
-                    {
-                        dgvReserva.Rows[indice].Cells["collServicios"].Value = "Ninguno";
-                    }
-                    //MONTOS
-                    dgvReserva.Rows[indice].Cells["colSubTotal"].Value = r.Sub_Total.ToString("C2"); // C2 le pone formato de moneda ($)
-                    dgvReserva.Rows[indice].Cells["ColIva"].Value = r.Iva.ToString("C2");
-                    dgvReserva.Rows[indice].Cells["colTotal"].Value = r.Total.ToString("C2");
+                    numeroFila++;
+                    LlenarFilaReserva(dgvReserva, r, numeroFila);
                 }
             }
         }
@@ -233,29 +239,80 @@ namespace Controlador
             }
         }
 
-        public List<Reserva> BuscarReservaPorNombre(string nombre)
-        {
-            return reservas.Where(r => r.Huesped.Nombres.ToLower().Contains(nombre.ToLower())).ToList();
-        }
-        public void LlenarTablaPorNombre(DataGridView dgvReserva, string nombre)
+        //METODO PARA BUSCAR POR NOMBRO EN EDITAR RESERVA
+        public int BuscarPorNombre(string nombre, DataGridView dgvReserva)
         {
             dgvReserva.Rows.Clear();
-            var resultados = BuscarReservaPorNombre(nombre);
-        }
-        public List<Reserva> BuscarReservaPorCI(string ci)
-        {
-            return reservas.Where(r => r.Huesped.Cedula.Contains(ci)).ToList();
-        }
-        public void LlenarTablaPorCI(DataGridView dgvReserva, string ci)
-        {
-            dgvReserva.Rows.Clear();
-            var resultados = BuscarReservaPorCI(ci);
+            int contador = 0;
+
+            foreach (Reserva r in reservas)
+            {
+                if (r.Huesped != null && r.Huesped.Nombres.ToLower().Contains(nombre.ToLower()))
+                {
+                    contador++;
+                    LlenarFilaReserva(dgvReserva, r, contador);
+                }
+            }
+            return contador;
         }
 
-        public bool ActualizarReserva(string ciOriginal, string nombres, string ci, string telefono, string correo,
-            string nacionalidad, DateTime fechaLlegada, DateTime fechaSalida, int adultos, int ninos)
+        //METODO PARA BUSCAR POR CEDULA EN EDITAR RESERVA
+        public bool BuscarPorCedula(string cedula, DataGridView dgvReserva)
         {
-            Reserva reservaExistente = reservas.FirstOrDefault(r => r.Huesped.Cedula == ciOriginal);
+            dgvReserva.Rows.Clear();
+
+            foreach (Reserva r in reservas)
+            {
+                if (r.Huesped != null && r.Huesped.Cedula == cedula)
+                {
+                    LlenarFilaReserva(dgvReserva, r, 1);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        //
+        public bool CargarDatosReserva(string cedula, TextBox txtNombres, TextBox txtCi, TextBox txtTelefono,
+            TextBox txtCorreo, TextBox txtNacionalidad, DateTimePicker dtpLlegada, DateTimePicker dtpSalida,
+            NumericUpDown numAdultos, NumericUpDown numNinos)
+        {
+            foreach (Reserva r in reservas)
+            {
+                if (r.Huesped != null && r.Huesped.Cedula == cedula)
+                {
+                    txtNombres.Text = r.Huesped.Nombres;
+                    txtCi.Text = r.Huesped.Cedula;
+                    txtTelefono.Text = r.Huesped.Celular;
+                    txtCorreo.Text = r.Huesped.Correo;
+                    txtNacionalidad.Text = r.Huesped.Nacionalidad;
+
+                    dtpLlegada.Value = r.Fecha_Llegada;
+                    dtpSalida.Value = r.Fecha_Salida;
+
+                    numAdultos.Value = r.Cantidad_Adulto;
+                    numNinos.Value = r.Cantidad_Ninios;
+
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        //
+        public bool ActualizarReserva(string cedulaOriginal, string nombres, string ci, string telefono,
+            string correo, string nacionalidad, DateTime fechaLlegada, DateTime fechaSalida,
+            int adultos, int ninos)
+        {
+            Reserva reservaExistente = null;
+            foreach (Reserva r in reservas)
+            {
+                if (r.Huesped != null && r.Huesped.Cedula == cedulaOriginal)
+                {
+                    reservaExistente = r;
+                    break;
+                }
+            }
 
             if (reservaExistente == null)
             {
@@ -276,7 +333,7 @@ namespace Controlador
             reservaExistente.Cantidad_Adulto = adultos;
             reservaExistente.Cantidad_Ninios = ninos;
 
-            // Recalcular totales
+            // Recalcular totales (por si cambiaron las fechas)
             reservaExistente.Calcular_Totales();
 
             return true;

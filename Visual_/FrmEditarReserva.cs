@@ -13,81 +13,151 @@ namespace Visual_
 {
     public partial class FrmEditarReserva : Form
     {
-        Adm_Reserva admRes = new Adm_Reserva();
-        private string ciOriginal = ""; // Para guardar el CI original antes de editar
-        private bool modoEdicion = false;
+        Adm_Reserva admReserva = new Adm_Reserva();
+        string cedulaOriginal = "";
+        bool modoEdicion = false;
 
         public FrmEditarReserva()
         {
             InitializeComponent();
-            DeshabilitarControles();
+
+            HabilitarEdicion(false);
+            btnConfirmar.Enabled = false;
+            radioButton2.Checked = true;
+            admReserva.LlenarTabla(dgvReserva);
         }
 
         private void FrmRegistrarReserva_Load(object sender, EventArgs e)
         {
-            // Configurar los RadioButtons
-            radioButton1.Checked = true; // Por defecto buscar por nombre
-
-            // Configurar las fechas
-            dtpLlegada.MinDate = DateTime.Today;
-            dtpSalida.MinDate = DateTime.Today.AddDays(1);
         }
 
-        // Botón Buscar
         private void button1_Click(object sender, EventArgs e)
         {
-            dgvReserva.Rows.Clear();
-
-            if (radioButton1.Checked) // Buscar por Nombre
             {
-                string nombre = txtNombre.Text.Trim();
-                if (string.IsNullOrEmpty(nombre))
+                if (radioButton1.Checked)
                 {
-                    MessageBox.Show("Ingrese un nombre para buscar", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    string nombre = txtNombre.Text.Trim();
+                    if (string.IsNullOrEmpty(nombre))
+                    {
+                        MessageBox.Show("Ingrese un nombre para buscar", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    int resultados = admReserva.BuscarPorNombre(nombre, dgvReserva);
+                    if (resultados == 0)
+                    {
+                        MessageBox.Show("No se encontraron reservas con ese nombre", "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                    MessageBox.Show($"Se encontraron {resultados} reserva(s)", "Resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
-                // Usar el método del controlador para llenar la tabla con resultados filtrados
-                admRes.LlenarTablaPorNombre(dgvReserva, nombre);
-
-                if (dgvReserva.Rows.Count > 0)
+                else if (radioButton2.Checked)
                 {
-                    MessageBox.Show($"Se encontraron {dgvReserva.Rows.Count} reserva(s)", "Búsqueda exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    string ci = txtCi.Text.Trim();
+                    if (string.IsNullOrEmpty(ci))
+                    {
+                        MessageBox.Show("Ingrese una cédula para buscar", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    bool encontrado = admReserva.BuscarPorCedula(ci, dgvReserva);
+                    if (!encontrado)
+                    {
+                        MessageBox.Show("No se encontró ninguna reserva con esa cédula", "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+
+                    MessageBox.Show("Reserva encontrada. Haga clic en 'Editar' para modificarla.", "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("No se encontraron reservas con ese nombre", "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Seleccione un criterio de búsqueda", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-            }
-            else if (radioButton2.Checked) // Buscar por CI
-            {
-                string ci = txtCi.Text.Trim();
-                if (string.IsNullOrEmpty(ci))
-                {
-                    MessageBox.Show("Ingrese un CI para buscar", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // Usar el método del controlador para llenar la tabla con resultados filtrados
-                admRes.LlenarTablaPorCI(dgvReserva, ci);
-
-                if (dgvReserva.Rows.Count > 0)
-                {
-                    MessageBox.Show($"Se encontraron {dgvReserva.Rows.Count} reserva(s)", "Búsqueda exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("No se encontraron reservas con ese CI", "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Seleccione un criterio de búsqueda", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-        // Botón Editar
-        private void btnEditar_Click(object sender, EventArgs e)
+        private void HabilitarEdicion(bool habilitar)
+        {
+            textBox2.ReadOnly = !habilitar;
+            textBox1.ReadOnly = !habilitar;
+            txtTelefono.ReadOnly = !habilitar;
+            txtCorreo.ReadOnly = !habilitar;
+            txtNacionalidad.ReadOnly = !habilitar;
+
+            dtpLlegada.Enabled = habilitar;
+            dtpSalida.Enabled = habilitar;
+
+            numAdultos.ReadOnly = !habilitar;
+            numNinos.ReadOnly = !habilitar;
+        }
+
+        private void btnConfirmar_Click(object sender, EventArgs e)
+        {
+            if (!modoEdicion)
+            {
+                MessageBox.Show("No hay ninguna reserva seleccionada para editar", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string nombres = textBox2.Text.Trim();
+            string ci = textBox1.Text.Trim();
+            string telefono = txtTelefono.Text.Trim();
+            string correo = txtCorreo.Text.Trim();
+            string nacionalidad = txtNacionalidad.Text.Trim();
+
+            if (!admReserva.ValidadDatos(nombres, ci, telefono, correo, nacionalidad))
+            {
+                return;
+            }
+
+            if (dtpSalida.Value.Date <= dtpLlegada.Value.Date)
+            {
+                MessageBox.Show("La fecha de salida debe ser posterior a la fecha de llegada", "Error de fechas", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult resultado = MessageBox.Show(
+                "¿Está seguro de que desea guardar los cambios?\n\nNOTA: La habitación y servicio NO se modificarán.",
+                "Confirmar edición",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (resultado == DialogResult.Yes)
+            {
+                // Actualizar sin índices de habitación ni servicio
+                bool exito = admReserva.ActualizarReserva(
+                    cedulaOriginal,
+                    nombres,
+                    ci,
+                    telefono,
+                    correo,
+                    nacionalidad,
+                    dtpLlegada.Value,
+                    dtpSalida.Value,
+                    (int)numAdultos.Value,
+                    (int)numNinos.Value
+                );
+
+                if (exito)
+                {
+                    MessageBox.Show("Reserva actualizada exitosamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    admReserva.LlenarTabla(dgvReserva);
+
+                    HabilitarEdicion(false);
+                    btnConfirmar.Enabled = false;
+                    modoEdicion = false;
+                    cedulaOriginal = "";
+
+                    txtNombre.Clear();
+                    txtCi.Clear();
+                }
+            } 
+        }
+
+        private void btnEditar_Click_1(object sender, EventArgs e)
         {
             if (dgvReserva.SelectedRows.Count == 0)
             {
@@ -95,127 +165,26 @@ namespace Visual_
                 return;
             }
 
-            // Obtener la fila seleccionada
-            DataGridViewRow filaSeleccionada = dgvReserva.SelectedRows[0];
-            string ci = filaSeleccionada.Cells["colCi"].Value.ToString();
+            int indiceSeleccionado = dgvReserva.SelectedRows[0].Index;
+            string cedula = dgvReserva.Rows[indiceSeleccionado].Cells["colCi"].Value.ToString();
 
-            // Guardar el CI original
-            ciOriginal = ci;
+            cedulaOriginal = cedula;
 
-            // Cargar los datos desde la tabla (no desde el modelo directamente)
-            textBox2.Text = filaSeleccionada.Cells["colNombres"].Value.ToString();
-            textBox1.Text = filaSeleccionada.Cells["colCi"].Value.ToString();
-            txtTelefono.Text = filaSeleccionada.Cells["colTelefono"].Value.ToString();
-            txtCorreo.Text = filaSeleccionada.Cells["colCorreo"].Value.ToString();
-            txtNacionalidad.Text = filaSeleccionada.Cells["colNacionalidad"].Value.ToString();
+            // Cargar datos sin habitación ni servicio
+            bool cargado = admReserva.CargarDatosReserva(cedula, textBox2, textBox1, txtTelefono,
+                txtCorreo, txtNacionalidad, dtpLlegada, dtpSalida, numAdultos, numNinos);
 
-            // Fechas
-            DateTime.TryParse(filaSeleccionada.Cells["colLlegada"].Value.ToString(), out DateTime fechaLlegada);
-            DateTime.TryParse(filaSeleccionada.Cells["colSalida"].Value.ToString(), out DateTime fechaSalida);
-            dtpLlegada.Value = fechaLlegada;
-            dtpSalida.Value = fechaSalida;
+            if (!cargado)
+            {
+                MessageBox.Show("No se pudo cargar la reserva", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            // Cantidades
-            numAdultos.Value = Convert.ToInt32(filaSeleccionada.Cells["colAdultos"].Value);
-            numNinos.Value = Convert.ToInt32(filaSeleccionada.Cells["colNinos"].Value);
-
-            // Habilitar controles para edición
-            HabilitarControles();
+            HabilitarEdicion(true);
+            btnConfirmar.Enabled = true;
             modoEdicion = true;
 
-            MessageBox.Show("Puede modificar los datos de la reserva y presionar CONFIRMAR para guardar los cambios", "Modo Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        // Botón Confirmar
-        private void btnConfirmar_Click(object sender, EventArgs e)
-        {
-            if (!modoEdicion)
-            {
-                MessageBox.Show("Primero debe seleccionar una reserva y presionar el botón EDITAR", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Obtener los datos de los controles
-            string nombres = textBox2.Text.Trim();
-            string ci = textBox1.Text.Trim();
-            string telefono = txtTelefono.Text.Trim();
-            string correo = txtCorreo.Text.Trim();
-            string nacionalidad = txtNacionalidad.Text.Trim();
-            DateTime fechaLlegada = dtpLlegada.Value;
-            DateTime fechaSalida = dtpSalida.Value;
-            int adultos = (int)numAdultos.Value;
-            int ninos = (int)numNinos.Value;
-
-            // Validar datos usando el controlador
-            if (!admRes.ValidadDatos(nombres, ci, telefono, correo, nacionalidad))
-            {
-                return;
-            }
-
-            // Validar fechas
-            if (fechaSalida <= fechaLlegada)
-            {
-                MessageBox.Show("La fecha de salida debe ser posterior a la fecha de llegada", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            // Actualizar la reserva usando el controlador
-            bool exito = admRes.ActualizarReserva(ciOriginal, nombres, ci, telefono, correo, nacionalidad, fechaLlegada, fechaSalida, adultos, ninos);
-
-            if (exito)
-            {
-                MessageBox.Show("La reserva se actualizó correctamente", "Actualización exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Limpiar y deshabilitar controles
-                LimpiarControles();
-                DeshabilitarControles();
-                modoEdicion = false;
-                ciOriginal = "";
-
-                // Limpiar la tabla
-                dgvReserva.Rows.Clear();
-            }
-        }
-
-        private void HabilitarControles()
-        {
-            grpReserva.Enabled = true;
-            textBox2.ReadOnly = false;
-            textBox1.ReadOnly = false;
-            txtTelefono.ReadOnly = false;
-            txtCorreo.ReadOnly = false;
-            txtNacionalidad.ReadOnly = false;
-            dtpLlegada.Enabled = true;
-            dtpSalida.Enabled = true;
-            numAdultos.ReadOnly = false;
-            numNinos.ReadOnly = false;
-        }
-
-        private void DeshabilitarControles()
-        {
-            grpReserva.Enabled = false;
-            textBox2.ReadOnly = true;
-            textBox1.ReadOnly = true;
-            txtTelefono.ReadOnly = true;
-            txtCorreo.ReadOnly = true;
-            txtNacionalidad.ReadOnly = true;
-            dtpLlegada.Enabled = false;
-            dtpSalida.Enabled = false;
-            numAdultos.ReadOnly = true;
-            numNinos.ReadOnly = true;
-        }
-
-        private void LimpiarControles()
-        {
-            textBox2.Clear();
-            textBox1.Clear();
-            txtTelefono.Clear();
-            txtCorreo.Clear();
-            txtNacionalidad.Clear();
-            numAdultos.Value = 1;
-            numNinos.Value = 0;
-            dtpLlegada.Value = DateTime.Today;
-            dtpSalida.Value = DateTime.Today.AddDays(1);
+            MessageBox.Show("Puede editar los datos del huésped y fechas.\nLa habitación y servicio NO se pueden cambiar.", "Edición habilitada", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
