@@ -29,26 +29,31 @@ namespace Controlador
             listaServicios.Clear();
             listaServicios.Add(new Servicio
             {
+                Id_Servicio = 1,
                 Tipo_Servicio = "Sauna",
                 Precio = 10
             });
             listaServicios.Add(new Servicio
             {
+                Id_Servicio = 2,
                 Tipo_Servicio = "Gimnasio",
                 Precio = 5
             });
             listaServicios.Add(new Servicio
             {
+                Id_Servicio = 3,
                 Tipo_Servicio = "Transporte",
                 Precio = 15
             });
             listaServicios.Add(new Servicio
             {
+                Id_Servicio = 4,
                 Tipo_Servicio = "Piscina",
                 Precio = 7
             });
             listaServicios.Add(new Servicio
             {
+                Id_Servicio = 5,
                 Tipo_Servicio = "Lavanderia",
                 Precio = 5
             });
@@ -59,7 +64,7 @@ namespace Controlador
             {
                 return listaServicios[indice];
             }
-            return null; // Retorna null si no se encuentra
+            return null; 
         }
         public double ObtenerPrecioServicioPorIndice(int indice)
         {

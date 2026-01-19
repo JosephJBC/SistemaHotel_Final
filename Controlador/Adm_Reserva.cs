@@ -115,7 +115,7 @@ namespace Controlador
             listaHabitaciones.Clear();
             listaHabitaciones.Add(new Habitacion
             {
-                Id_Habitacion = 1234567890,
+                Id_Habitacion = 1,
                 Num_Habitacion = "101",
                 Num_Piso = 1,
                 Tipo_Habitacion = "Matrimonial",
@@ -125,7 +125,7 @@ namespace Controlador
             });
             listaHabitaciones.Add(new Habitacion
             {
-                Id_Habitacion = 1234567891,
+                Id_Habitacion = 2,
                 Num_Habitacion = "102",
                 Num_Piso = 1,
                 Tipo_Habitacion = "Simple",
@@ -135,7 +135,7 @@ namespace Controlador
             });
             listaHabitaciones.Add(new Habitacion
             {
-                Id_Habitacion = 1234567892,
+                Id_Habitacion = 3,
                 Num_Habitacion = "201",
                 Num_Piso = 2,
                 Tipo_Habitacion = "Doble",
@@ -145,7 +145,7 @@ namespace Controlador
             });
             listaHabitaciones.Add(new Habitacion
             {
-                Id_Habitacion = 1234567893,
+                Id_Habitacion = 4,
                 Num_Habitacion = "202",
                 Num_Piso = 2,
                 Tipo_Habitacion = "Suite",
@@ -155,7 +155,7 @@ namespace Controlador
             });
             listaHabitaciones.Add(new Habitacion
             {
-                Id_Habitacion = 1234567894,
+                Id_Habitacion = 5,
                 Num_Habitacion = "301",
                 Num_Piso = 3,
                 Tipo_Habitacion = "Familiar",
@@ -253,7 +253,7 @@ namespace Controlador
                     numeroFila++;
                 }
             }
-            return numeroFila - 1; // Retorna cantidad de resultados
+            return numeroFila - 1; 
         }
 
         // Filtrar por nacionalidad

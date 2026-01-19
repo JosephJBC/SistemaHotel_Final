@@ -17,6 +17,7 @@ namespace Modelo
         public double Sub_Total { get; set; }
         public double Iva { get; set; }
         public double Total { get; set; }
+        public char Estado { get; set; }
         //RELACIONES
         public Huesped Huesped { get; set; }
         public Habitacion Habitacion { get; set; }
@@ -35,6 +36,7 @@ namespace Modelo
             Sub_Total = 0;
             Iva = 0;
             Total = 0;
+            Estado = 'A';
         }
         //METODO PARA CALCUALR EL SUB TOTAL ENTRE HABITACION Y DETALLE DE RESERVA
         public double Calcular_Sub_Total()
