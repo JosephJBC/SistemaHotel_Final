@@ -34,7 +34,7 @@ namespace Datos
 
                 if (idHuesped == null)
                 {
-                    return "Error al insertar huesped";
+                    return "0:Error al insertar huesped";
                 }
 
                 // INSERTAR RESERVA CON EL ID DE HUESPED, HABITACION Y SERVICIO
@@ -71,16 +71,16 @@ namespace Datos
 
                 if (filasAfectadas > 0)
                 {
-                    msj = "Reserva registrada exitosamente";
+                    msj = "1:Reserva registrada exitosamente";
                 }
                 else
                 {
-                    msj = "No se pudo registrar la reserva";
+                    msj = "0:No se pudo registrar la reserva";
                 }
             }
             catch (Exception ex)
             {
-                msj = "Error: " + ex.Message;
+                msj = "0:Error: " + ex.Message;
             }
 
             return msj;
