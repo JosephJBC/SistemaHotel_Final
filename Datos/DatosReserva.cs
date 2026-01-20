@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class DatosReserva
+    public class DatosReserva 
     {
         public string RegistrarReserva(Reserva nuevaReserva, SqlConnection cn)
         {
@@ -56,7 +56,7 @@ namespace Datos
                 cmd.Parameters.AddWithValue("@Id_Huesped", Convert.ToInt32(idHuesped));
                 cmd.Parameters.AddWithValue("@Id_Habitacion", nuevaReserva.Habitacion.Id_Habitacion);
 
-                // Insertar Id_Servicio si existe un servicio válido
+                // INSERTAR EL ID DEL SERVICIO SOLO SI EXISTE
                 if (nuevaReserva.detalles_Reserva != null && nuevaReserva.detalles_Reserva.Count > 0
                     && nuevaReserva.detalles_Reserva[0].Servicio.Id_Servicio > 0)
                 {

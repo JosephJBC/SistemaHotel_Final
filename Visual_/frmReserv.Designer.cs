@@ -119,7 +119,7 @@
             // txtCi
             // 
             this.txtCi.Location = new System.Drawing.Point(50, 84);
-            this.txtCi.MaxLength = 9;
+            this.txtCi.MaxLength = 10;
             this.txtCi.Name = "txtCi";
             this.txtCi.Size = new System.Drawing.Size(100, 27);
             this.txtCi.TabIndex = 5;

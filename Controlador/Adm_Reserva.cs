@@ -16,7 +16,7 @@ namespace Controlador
         List<Habitacion> listaHabitaciones = new List<Habitacion>();
         public object llenarTablar;
         conexion con = null;
-        DatosReserva datosR = null;   
+        DatosReserva datosR = null;  
         public int GetcantidadLista()
         {
             return reservas.Count;
@@ -95,7 +95,7 @@ namespace Controlador
             nuevaReserva.Calcular_Totales();
             //Guardar en la lista
             reservas.Add(nuevaReserva);
-            RegistarReseraBDD(nuevaReserva);
+            RegistarReseraBDD(nuevaReserva); 
             return nuevaReserva.ToString();
         }
 
@@ -401,7 +401,7 @@ namespace Controlador
             }
         }
 
-        private void RegistarReseraBDD(Reserva nuevaReserva)
+        private void RegistarReseraBDD(Reserva nuevaReserva) 
         {
             con = new conexion();
             string res = con.conectar();
