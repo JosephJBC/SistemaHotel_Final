@@ -16,7 +16,32 @@ namespace Controlador
         List<Habitacion> listaHabitaciones = new List<Habitacion>();
         public object llenarTablar;
         conexion con = null;
-        DatosReserva datosR = null;  
+        DatosReserva datosR = null;
+        public Adm_Reserva()
+        {
+            ConsultarReservasBBD();
+        }
+
+        private void ConsultarReservasBBD()
+        {
+            con = new conexion();
+            string res = con.conectar();
+            datosR = new DatosReserva();
+            if (res[0] == '1')
+            {
+                reservas = datosR.ConsultarReserva(con.Cn);
+                if (reservas. Count==0)
+                {
+                    MessageBox.Show("No hay reservas en la base de datos", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                con.cerrar();
+            }
+            else if (res[0] == '0')
+            {
+                MessageBox.Show("Error de conexion: " + res, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         public int GetcantidadLista()
         {
             return reservas.Count;

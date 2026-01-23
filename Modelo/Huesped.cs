@@ -15,7 +15,6 @@ namespace Modelo
         public string Nacionalidad { get; set; }
         public string Correo { get; set; }
         public string Celular { get; set; }
-        public char Estado { get; set; }
         //CONSTRUCTOR
         public Huesped()
         {
@@ -25,7 +24,7 @@ namespace Modelo
             Nacionalidad = "";
             Correo = "";
             Celular = "";
-            Estado = 'A';
+
 
         }
     }
