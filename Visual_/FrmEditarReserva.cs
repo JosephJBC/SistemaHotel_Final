@@ -90,7 +90,7 @@ namespace Visual_
 
             cedulaOriginal = cedula;
 
-            // Cargar datos sin habitación ni servicio
+            //CARGAR DATOS EN LOS CAMPOS
             bool cargado = admReserva.CargarDatosReserva(cedula, textBox2, textBox1, txtTelefono,
                 txtCorreo, txtNacionalidad, dtpLlegada, dtpSalida, numAdultos, numNinos);
 
@@ -156,7 +156,7 @@ namespace Visual_
 
             if (resultado == DialogResult.Yes)
             {
-                // Actualizar sin indices de habitacion ni servicio
+                //ACTUALIZAR RESERVA
                 bool exito = admReserva.ActualizarReserva(
                     cedulaOriginal,
                     nombres,

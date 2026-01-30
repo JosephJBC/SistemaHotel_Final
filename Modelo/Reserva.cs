@@ -41,14 +41,12 @@ namespace Modelo
         {
             Sub_Total = 0;
 
-            // 1. Calculamos los días aquí adentro
             TimeSpan diferencia = Fecha_Salida.Date - Fecha_Llegada.Date;
             int dias = diferencia.Days;
-            if (dias < 1) dias = 1; // Mínimo 1 día
+            if (dias < 1) dias = 1;
 
             if (Habitacion != null)
             {
-                // 2. Multiplicamos el precio por los días
                 Sub_Total += (Habitacion.Precio * dias);
             }
 

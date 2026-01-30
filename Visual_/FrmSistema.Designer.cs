@@ -41,15 +41,16 @@
             this.acerdaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.auotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.conexionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dinamicoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Location = new System.Drawing.Point(0, 30);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 28);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -61,7 +62,7 @@
             this.acerdaDeToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(800, 30);
+            this.menuStrip2.Size = new System.Drawing.Size(800, 28);
             this.menuStrip2.TabIndex = 1;
             this.menuStrip2.Text = "menuStrip2";
             // 
@@ -131,7 +132,8 @@
             // 
             this.acerdaDeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.auotToolStripMenuItem,
-            this.conexionToolStripMenuItem});
+            this.conexionToolStripMenuItem,
+            this.dinamicoToolStripMenuItem});
             this.acerdaDeToolStripMenuItem.Name = "acerdaDeToolStripMenuItem";
             this.acerdaDeToolStripMenuItem.Size = new System.Drawing.Size(91, 24);
             this.acerdaDeToolStripMenuItem.Text = "Acerda de";
@@ -149,6 +151,13 @@
             this.conexionToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.conexionToolStripMenuItem.Text = "Conexion";
             this.conexionToolStripMenuItem.Click += new System.EventHandler(this.conexionToolStripMenuItem_Click);
+            // 
+            // dinamicoToolStripMenuItem
+            // 
+            this.dinamicoToolStripMenuItem.Name = "dinamicoToolStripMenuItem";
+            this.dinamicoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.dinamicoToolStripMenuItem.Text = "Dinamico";
+            this.dinamicoToolStripMenuItem.Click += new System.EventHandler(this.dinamicoToolStripMenuItem_Click);
             // 
             // FrmSistema
             // 
@@ -185,5 +194,6 @@
         private System.Windows.Forms.ToolStripMenuItem listasXNacionalidadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listarXToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem conexionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dinamicoToolStripMenuItem;
     }
 }

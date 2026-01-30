@@ -83,5 +83,11 @@ namespace Visual_
         {
             admRes.conexion();
         }
+
+        private void dinamicoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmGridDinamico frmDin = new FrmGridDinamico();
+            frmDin.ShowDialog();
+        }
     }
 }

@@ -12,7 +12,6 @@ namespace Datos
     public class DatosReserva 
     {
         SqlCommand cmd = null;
-        // Tambien se realizo el select de la clase 20 de enero
         public List<Reserva> ConsultarReserva(SqlConnection cn)
         {
             List<Reserva> lista = new List<Reserva>();
@@ -30,8 +29,8 @@ namespace Datos
                 LEFT JOIN Habitacion hab ON r.Id_Habitacion = hab.Id_Habitacion
                 LEFT JOIN Servicio s ON r.Id_Servicio = s.Id_Servicio
                 WHERE r.Estado = 'A'"; 
-            // se intento implementar el "SELECT * FROM reserva WHERE estado= 'A' pero no recogia todo la informacion en la tabla del formulario
-            // y tube que implementar un join" 
+            //se intento implementar el "SELECT * FROM reserva WHERE estado= 'A' pero no recogia todo la informacion en la tabla del formulario
+            //y tube que implementar un join" 
             cmd = new SqlCommand();
             SqlDataReader tablaVirtual = null;
             try
@@ -115,13 +114,13 @@ namespace Datos
             string msj = "";
             try
             {
-                // ACTUALIZAR LA TABLA DE RESERVA
+                //ACTUALIZAR LA TABLA DE RESERVA
                 string comandoReserva = "UPDATE Reserva SET Estado = 'I' WHERE Id_Huesped = @Id_Huesped AND Estado = 'A'";
                 cmd = new SqlCommand(comandoReserva, cn);
                 cmd.Parameters.AddWithValue("@Id_Huesped", Id_Huesped);
                 cmd.ExecuteNonQuery();
 
-                // ACTUALIZAR LA TABLA DE HUESPED
+                //ACTUALIZAR LA TABLA DE HUESPED
                 string comandoHuesped = "UPDATE Huesped SET Estado = 'I' WHERE Id_Huesped = @Id_Huesped AND Estado = 'A'";
                 cmd = new SqlCommand(comandoHuesped, cn);
                 cmd.Parameters.AddWithValue("@Id_Huesped", Id_Huesped);
@@ -163,7 +162,7 @@ namespace Datos
                     return "0:Error al insertar huesped";
                 }
 
-                // INSERTAR RESERVA CON EL ID DE HUESPED, HABITACION Y SERVICIO
+                //INSERTAR RESERVA CON EL ID DE HUESPED, HABITACION Y SERVICIO
                 string comandoReserva = "INSERT INTO Reserva (Fecha_Llegada, Fecha_Salida, Fecha_De_Reserva, Cantidad_Adulto, Cantidad_Ninios, " +
                                        "Sub_Total, Iva, Total, Estado, Id_Huesped, Id_Habitacion, Id_Servicio) " +
                                        "VALUES (@Fecha_Llegada, @Fecha_Salida, @Fecha_De_Reserva, @Cantidad_Adulto, @Cantidad_Ninios, " +

@@ -64,6 +64,12 @@
     <Compile Include="FrmEliminarReserva.Designer.cs">
       <DependentUpon>FrmEliminarReserva.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmGridDinamico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGridDinamico.Designer.cs">
+      <DependentUpon>FrmGridDinamico.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmListaReserva.cs">
       <SubType>Form</SubType>
     </Compile>
