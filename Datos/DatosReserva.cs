@@ -12,6 +12,7 @@ namespace Datos
     public class DatosReserva 
     {
         SqlCommand cmd = null;
+        // Tambien se realizo el select de la clase 20 de enero
         public List<Reserva> ConsultarReserva(SqlConnection cn)
         {
             List<Reserva> lista = new List<Reserva>();
@@ -51,7 +52,7 @@ namespace Datos
                     reserva.Total = Convert.ToDouble(tablaVirtual["Total"]);
                     reserva.Huesped = new Huesped
                     {
-                        Id_Huesped = Convert.ToInt64(tablaVirtual["Id_Huesped"]),
+                        Id_Huesped = Convert.ToInt32(tablaVirtual["Id_Huesped"]),
                         Cedula = tablaVirtual["Cedula"].ToString(),
                         Nombres = tablaVirtual["Nombres"].ToString(),
                         Nacionalidad = tablaVirtual["Nacionalidad"].ToString(),
@@ -60,7 +61,7 @@ namespace Datos
                     };
                     reserva.Habitacion = new Habitacion 
                     {
-                        Id_Habitacion = Convert.ToInt64(tablaVirtual["Id_Habitacion"]),
+                        Id_Habitacion = Convert.ToInt32(tablaVirtual["Id_Habitacion"]),
                         Num_Habitacion = tablaVirtual["Num_Habitacion"].ToString(),
                         Num_Piso = Convert.ToInt32(tablaVirtual["Num_Piso"]),
                         Tipo_Habitacion = tablaVirtual["Tipo_Habitacion"].ToString(),
@@ -72,7 +73,7 @@ namespace Datos
                     {
                         Servicio servicio = new Servicio
                         {
-                            Id_Servicio = Convert.ToInt64(tablaVirtual["Id_Servicio"]),
+                            Id_Servicio = Convert.ToInt32(tablaVirtual["Id_Servicio"]),
                             Tipo_Servicio = tablaVirtual["Nombre_Servicio"].ToString(),
                             Precio = Convert.ToDouble(tablaVirtual["Precio"])
                         };
@@ -107,6 +108,33 @@ namespace Datos
                 }
             }
             return lista;
+        }
+
+        public string EliminarReserva(int Id_Huesped, SqlConnection cn)
+        {
+            string msj = "";
+            try
+            {
+                // ACTUALIZAR LA TABLA DE RESERVA
+                string comandoReserva = "UPDATE Reserva SET Estado = 'I' WHERE Id_Huesped = @Id_Huesped AND Estado = 'A'";
+                cmd = new SqlCommand(comandoReserva, cn);
+                cmd.Parameters.AddWithValue("@Id_Huesped", Id_Huesped);
+                cmd.ExecuteNonQuery();
+
+                // ACTUALIZAR LA TABLA DE HUESPED
+                string comandoHuesped = "UPDATE Huesped SET Estado = 'I' WHERE Id_Huesped = @Id_Huesped AND Estado = 'A'";
+                cmd = new SqlCommand(comandoHuesped, cn);
+                cmd.Parameters.AddWithValue("@Id_Huesped", Id_Huesped);
+                cmd.ExecuteNonQuery();
+
+                msj = "1";
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+                msj = "0" + ex.Message;
+            }
+            return msj;
         }
 
         public string RegistrarReserva(Reserva nuevaReserva, SqlConnection cn)

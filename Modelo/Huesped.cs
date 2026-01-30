@@ -9,7 +9,7 @@ namespace Modelo
     public class Huesped
     {
         //PROPIEDADES
-        public long Id_Huesped { get; set; }
+        public int Id_Huesped { get; set; }
         public string Cedula { get; set; }
         public string Nombres { get; set; }
         public string Nacionalidad { get; set; }

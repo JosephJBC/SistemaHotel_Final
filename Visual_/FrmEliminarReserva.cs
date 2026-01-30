@@ -23,12 +23,21 @@ namespace Visual_
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             int indice = 0;
-            // Verificar que haya una fila seleccionada
+            string cedulaB = "";
             if (dgvReserva.SelectedRows.Count == 1)
             {
                 indice = dgvReserva.SelectedRows[0].Index;
-                // Llamar al método del controlador para eliminar
-                admRes.EliminarReserva(indice, dgvReserva);
+                cedulaB = dgvReserva.SelectedRows[0].Cells["colCi"].Value?.ToString();
+                DialogResult result = MessageBox.Show("¿Desea eliminar la reserva del huésped con cédula " + cedulaB + "?",
+                           "Confirmación",
+                           MessageBoxButtons.YesNo,
+                           MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    admRes.EliminarReserva(cedulaB, dgvReserva);
+                    dgvReserva.Rows.RemoveAt(indice);
+                    MessageBox.Show("Reserva eliminada correctamente", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             else
             {

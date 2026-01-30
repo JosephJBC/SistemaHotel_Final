@@ -11,7 +11,7 @@ namespace Modelo
     public class Habitacion
     {
         //PROPIEDADES
-        public long Id_Habitacion { get; set; }
+        public int Id_Habitacion { get; set; }
         public string Num_Habitacion { get; set; }
         public int Num_Piso { get; set; }
         public string Tipo_Habitacion { get; set; }

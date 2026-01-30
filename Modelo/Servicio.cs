@@ -9,7 +9,7 @@ namespace Modelo
     public class Servicio
     {
         //PROPIEDADES
-        public long Id_Servicio {get; set; }
+        public int Id_Servicio {get; set; }
         public string Tipo_Servicio { get; set; }
         public double Precio { get; set; }
         //CONSTRUCTOR

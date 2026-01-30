@@ -20,7 +20,7 @@ namespace Visual_
         public FrmEditarReserva()
         {
             InitializeComponent();
-
+   
             HabilitarEdicion(false);
             btnConfirmar.Enabled = false;
             radioButton2.Checked = true;

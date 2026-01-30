@@ -299,18 +299,36 @@ namespace Controlador
             return numeroFila - 1;
         }
 
-        public void EliminarReserva(int indice, DataGridView dgvReserva)
+        public void EliminarReserva(String cedulaB, DataGridView dgvReserva)
         {
-            string cedula = dgvReserva.Rows[indice].Cells["colCi"].Value.ToString();
+            int posicionRes = reservas.FindIndex(r => r.Huesped != null && r.Huesped.Cedula == cedulaB);
+            int Id_Huesped = reservas[posicionRes].Huesped.Id_Huesped;
+            reservas.RemoveAll(r => r.Huesped.Cedula == cedulaB);
+            EliminarReseraBDD(Id_Huesped, cedulaB);
+        }
 
-            DialogResult result = MessageBox.Show("¿Desea eliminar la reserva?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
+        private void EliminarReseraBDD(int Id_Huesped, string cedulaB)
+        {
+            con = new conexion();
+            string res = con.conectar();
+            datosR = new DatosReserva();
+            string resp = "";
+            if (res[0] == '1')
             {
-                dgvReserva.Rows.RemoveAt(indice);
-                reservas.RemoveAll(r => r.Huesped.Cedula == cedula);
-
-                MessageBox.Show("Registro eliminado. La reserva de " + cedula + " se elimino correctamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                resp = datosR.EliminarReserva(Id_Huesped, con.Cn);
+                if (resp[0] == '1')
+                {
+                    MessageBox.Show("Registro con cedula "+cedulaB+" Eliminado en la base de datos", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Error al eliminar la reserva en la base de datos: " + resp, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                con.cerrar();
+            }
+            else if (res[0] == '0')
+            {
+                MessageBox.Show("Error de conexion: " + res, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
