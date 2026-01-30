@@ -44,14 +44,12 @@ namespace Controlador
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al cargar datos: " + ex.Message,
-                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error al cargar datos: " + ex.Message,"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else if (res[0] == '0')
             {
-                MessageBox.Show("Error de conexión: " + res.Substring(1),
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error de conexión: " + res.Substring(1),"Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
