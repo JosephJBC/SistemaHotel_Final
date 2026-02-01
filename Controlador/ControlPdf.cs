@@ -22,7 +22,7 @@ namespace Controlador
             con = new conexion();
             string res = con.conectar();
 
-            if (res[0] == '1')
+            if (res[0] == '11')
             {
                 try
                 {
