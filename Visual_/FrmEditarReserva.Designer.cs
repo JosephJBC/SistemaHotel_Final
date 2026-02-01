@@ -550,7 +550,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvReserva);
+            this.MaximizeBox = false;
             this.Name = "FrmEditarReserva";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FrmRegistrarReserva";
             this.Load += new System.EventHandler(this.FrmRegistrarReserva_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvReserva)).EndInit();

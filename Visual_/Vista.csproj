@@ -105,6 +105,9 @@
     <EmbeddedResource Include="FrmEliminarReserva.resx">
       <DependentUpon>FrmEliminarReserva.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmGridDinamico.resx">
+      <DependentUpon>FrmGridDinamico.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmListaReserva.resx">
       <DependentUpon>FrmListaReserva.cs</DependentUpon>
     </EmbeddedResource>
@@ -152,6 +155,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Gemini_Generated_Image_85ab1a85ab1a85ab.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\agregar-usuario.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -43,7 +43,7 @@ namespace Visual_
         {
             int x = 40, y = 30, espacioY = 55, anchoLbl = 160, anchoTxt = 380;
 
-            //TÍTULO
+            //TITULO
             lblTitulo = new Label();
             lblTitulo.Text = "Informacon del Sistema y Autor";
             lblTitulo.Font = new Font("Segoe UI", 10, FontStyle.Bold);
@@ -81,7 +81,7 @@ namespace Visual_
             this.Controls.Add(txtDuenio);
             y += espacioY;
 
-            //DIRECCIÓN
+            //DIRECCION
             lblDireccion = new Label();
             lblDireccion.Text = "Direccion:";
             lblDireccion.Location = new Point(x, y);

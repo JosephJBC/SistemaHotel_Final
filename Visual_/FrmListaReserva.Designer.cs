@@ -277,7 +277,9 @@
             this.Controls.Add(this.txtNacionalidad);
             this.Controls.Add(this.lblNacionalidad);
             this.Controls.Add(this.dgvReserva);
+            this.MaximizeBox = false;
             this.Name = "FrmListaReserva";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FrmListaReserva";
             ((System.ComponentModel.ISupportInitialize)(this.dgvReserva)).EndInit();
             this.ResumeLayout(false);

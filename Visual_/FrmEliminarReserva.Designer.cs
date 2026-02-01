@@ -224,7 +224,9 @@
             this.ClientSize = new System.Drawing.Size(1333, 328);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.dgvReserva);
+            this.MaximizeBox = false;
             this.Name = "FrmEliminarReserva";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FrmEliminarReserva";
             ((System.ComponentModel.ISupportInitialize)(this.dgvReserva)).EndInit();
             this.ResumeLayout(false);
