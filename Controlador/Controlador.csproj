@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Adm_Reserva.cs" />
     <Compile Include="Adm_Detalle_De_Reserva.cs" />
+    <Compile Include="ControlPdf.cs" />
     <Compile Include="control_Dinamico.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

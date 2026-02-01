@@ -20,7 +20,6 @@ namespace Visual_
         public FrmEditarReserva()
         {
             InitializeComponent();
-   
             HabilitarEdicion(false);
             btnConfirmar.Enabled = false;
             radioButton2.Checked = true;
@@ -91,7 +90,7 @@ namespace Visual_
             cedulaOriginal = cedula;
 
             //CARGAR DATOS EN LOS CAMPOS
-            bool cargado = admReserva.CargarDatosReserva(cedula, textBox2, textBox1, txtTelefono,
+            bool cargado = admReserva.CargarDatosReserva(cedula, txtNom, txtCedu, txtTelefono,
                 txtCorreo, txtNacionalidad, dtpLlegada, dtpSalida, numAdultos, numNinos);
 
             if (!cargado)
@@ -109,8 +108,8 @@ namespace Visual_
 
         private void HabilitarEdicion(bool habilitar)
         {
-            textBox2.ReadOnly = !habilitar;
-            textBox1.ReadOnly = !habilitar;
+            txtNom.ReadOnly = !habilitar;
+            txtCedu.ReadOnly = !habilitar;
             txtTelefono.ReadOnly = !habilitar;
             txtCorreo.ReadOnly = !habilitar;
             txtNacionalidad.ReadOnly = !habilitar;
@@ -130,8 +129,8 @@ namespace Visual_
                 return;
             }
 
-            string nombres = textBox2.Text.Trim();
-            string ci = textBox1.Text.Trim();
+            string nombres = txtNom.Text.Trim();
+            string ci = txtCedu.Text.Trim();
             string telefono = txtTelefono.Text.Trim();
             string correo = txtCorreo.Text.Trim();
             string nacionalidad = txtNacionalidad.Text.Trim();
@@ -147,8 +146,7 @@ namespace Visual_
                 return;
             }
 
-            DialogResult resultado = MessageBox.Show(
-                "¿Esta seguro de que desea guardar los cambios?\n\nNOTA: La habitación y servicio NO se modificarán.",
+            DialogResult resultado = MessageBox.Show( "¿Esta seguro de que desea guardar los cambios?\n\nNOTA: La habitación y servicio NO se modificaran.",
                 "Confirmar edicion",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question
@@ -173,14 +171,11 @@ namespace Visual_
                 if (exito)
                 {
                     MessageBox.Show("Reserva actualizada exitosamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                     admReserva.LlenarTabla(dgvReserva);
-
                     HabilitarEdicion(false);
                     btnConfirmar.Enabled = false;
                     modoEdicion = false;
                     cedulaOriginal = "";
-
                     txtNombre.Clear();
                     txtCi.Clear();
                 }

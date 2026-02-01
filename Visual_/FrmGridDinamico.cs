@@ -1,13 +1,14 @@
-﻿using System;
+﻿using Controlador;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Controlador;
 
 namespace Visual_
 {
@@ -26,6 +27,9 @@ namespace Visual_
         private TextBox txtTelefono;
         private PictureBox picFoto;
         private Label lblFoto;
+        private Button btnGenerarAbrirPdf;
+        private ControlPdf ctrlPdf = new ControlPdf();
+        private string rutaPdf = "Informacion .pdf";
 
         control_Dinamico ctlDinm = new control_Dinamico();
         public FrmGridDinamico()
@@ -132,12 +136,39 @@ namespace Visual_
             picFoto.BackColor = Color.LightGray;
             this.Controls.Add(picFoto);
             y += 180;
+
+            btnGenerarAbrirPdf = new Button();
+            btnGenerarAbrirPdf.Text = "Generar y Abrir PDF";
+            btnGenerarAbrirPdf.Location = new Point(x + 180, y + 20);
+            btnGenerarAbrirPdf.Size = new Size(200, 40);
+            btnGenerarAbrirPdf.Click += BtnGenerarPdf_Click;
+            this.Controls.Add(btnGenerarAbrirPdf);
         }
 
         //CARGAR DATOS
         private void CargarDatos()
         {
             ctlDinm.LlenarInformacionAutor(txtNombreSistema, txtDuenio, txtDireccion, txtCorreo, txtTelefono, picFoto);
+        }
+
+        private void BtnGenerarPdf_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ctrlPdf.GenerarPDF(rutaPdf);
+                //Codigo para abrir PDF
+                ProcessStartInfo psi = new ProcessStartInfo();
+                psi.FileName = rutaPdf;
+                psi.UseShellExecute = true;
+                Process.Start(psi);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al generar el PDF: " + ex.Message,
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
         }
     }
 }

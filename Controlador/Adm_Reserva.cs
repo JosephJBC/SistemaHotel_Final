@@ -95,7 +95,7 @@ namespace Controlador
                 Correo = correo,
                 Nacionalidad = nacionalidad
             };
-            //Crear la Reserva
+            //CREAR RESERVA
             Reserva nuevaReserva = new Reserva(fechaLlegada, fechaSalida, fechaReserva, (int)adultos, (int)ninos);
             nuevaReserva.Huesped = huesped;
             if (listaHabitaciones.Count == 0) llenarHabitacion();
@@ -197,7 +197,7 @@ namespace Controlador
             }
             return 0; 
         }
-        // METODO PARA LLENAR TABLA Y TAMBIEN EDITAR Y BUSCAR
+        //METODO PARA LLENAR TABLA Y TAMBIEN EDITAR Y BUSCAR
         private void LlenarFilaReserva(DataGridView dgvReserva, Reserva r, int numeroFila)
         {
             int indice = dgvReserva.Rows.Add();
@@ -236,7 +236,6 @@ namespace Controlador
             dgvReserva.Rows[indice].Cells["ColIva"].Value = r.Iva.ToString("C2");
             dgvReserva.Rows[indice].Cells["colTotal"].Value = r.Total.ToString("C2");
         }
-
         //LLENAR TABLA 
         public void LlenarTabla(DataGridView dgvReserva)
         {
@@ -251,7 +250,7 @@ namespace Controlador
                 }
             }
         }
-        //
+    
         public void LlenarComboTiposHabitacion(ComboBox cmbHabitacion)
         {
             cmbHabitacion.Items.Clear();
@@ -280,7 +279,6 @@ namespace Controlador
             }
             return numeroFila - 1; 
         }
-
         // Filtrar por nacionalidad
         public int FiltrarPorNacionalidad(string nacionalidad, DataGridView dgvReserva)
         {
@@ -365,7 +363,6 @@ namespace Controlador
             return false;
         }
 
-        //
         public bool CargarDatosReserva(string cedula, TextBox txtNombres, TextBox txtCi, TextBox txtTelefono,
             TextBox txtCorreo, TextBox txtNacionalidad, DateTimePicker dtpLlegada, DateTimePicker dtpSalida,
             NumericUpDown numAdultos, NumericUpDown numNinos)
@@ -392,7 +389,6 @@ namespace Controlador
             return false;
         }
 
-        //
         public bool ActualizarReserva(string cedulaOriginal, string nombres, string ci, string telefono,
             string correo, string nacionalidad, DateTime fechaLlegada, DateTime fechaSalida,
             int adultos, int ninos)
@@ -425,7 +421,7 @@ namespace Controlador
             reservaExistente.Cantidad_Ninios = ninos;
 
             reservaExistente.Calcular_Totales();
-
+            ActualizarReservaBDD(reservaExistente);
             return true;
         }
 
@@ -460,6 +456,31 @@ namespace Controlador
                 else
                 {
                     MessageBox.Show("Error al registrar la reserva en la base de datos: " + resp, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                con.cerrar();
+            }
+            else if (res[0] == '0')
+            {
+                MessageBox.Show("Error de conexion: " + res, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ActualizarReservaBDD(Reserva reserva)
+        {
+            con = new conexion();
+            string res = con.conectar();
+            datosR = new DatosReserva();
+            string resp = "";
+            if (res[0] == '1')
+            {
+                resp = datosR.ActualizarReserva(reserva, con.Cn);
+                if (resp[0] == '1')
+                {
+                    MessageBox.Show("Reserva actualizada en la base de datos", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Error al actualizar la reserva en la base de datos: " + resp, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 con.cerrar();
             }

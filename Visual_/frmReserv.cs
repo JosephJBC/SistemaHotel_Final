@@ -44,11 +44,10 @@ namespace Visual_
 
             if (admReserva.ValidadDatos(nombres, ci, telefono, correo, nacionalidad))
             {
-                //Calcular precios antes de registrar
                 ActualizarTotalesVisuales();
                 int indexHab = cmbHabitacion.SelectedIndex;
                 int indexServ = cmbServicios.SelectedIndex;
-                //Registrar
+                //REGISTRAR RESERVA
                 string recibo = admReserva.Registrar(nombres, ci, telefono, correo, nacionalidad, DateTime.Now, 
                     fechaLlegada, fechaSalida, adultos, ninos, precioHabitacionActual, 
                     precioServicioActual, indexHab, indexServ); 
@@ -60,8 +59,6 @@ namespace Visual_
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
             char c = e.KeyChar;
-
-            // Si no es letra no es espacio y no es tecla de control borrar se bloquea.
             if (!char.IsLetter(c) && c != ' ' && !char.IsControl(c))
             {
                 e.Handled = true;
@@ -72,8 +69,6 @@ namespace Visual_
         private void txtCi_KeyPress(object sender, KeyPressEventArgs e)
         {
             char c = e.KeyChar;
-
-            // Si no es digito y no es borrar se bloquea.
             if (!char.IsDigit(c) && !char.IsControl(c))
             {
                 e.Handled = true;
@@ -109,16 +104,14 @@ namespace Visual_
         {
             int indexHab = cmbHabitacion.SelectedIndex;
             int indexServ = cmbServicios.SelectedIndex;
-            // Calcular Dias
+            //CALCULAR DIAS
             TimeSpan diferencia = dtpSalida.Value.Date - dtpLlegada.Value.Date;
             int dias = diferencia.Days;
             if (dias < 1) dias = 1;
-
-            // Obtener precios de habitacion y servios
+            //OBTENER PRECIOS DE HABITACION Y SERVICIO
             precioHabitacionActual = admReserva.ObtenerPrecioHabitacion(indexHab);
             precioServicioActual = adm_Detalle_De_Reserva.ObtenerPrecioServicioPorIndice(indexServ);
-
-            // Calcular subtotal,iva y total
+            //CALCULAR TOTALES
             double subTotal = (precioHabitacionActual * dias) + precioServicioActual;
             double iva = subTotal * 0.12;
             double total = subTotal + iva;

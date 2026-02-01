@@ -12,25 +12,65 @@ namespace Datos
     public class DatosReserva 
     {
         SqlCommand cmd = null;
+
+        //EDITAR RESERVA
+        public string ActualizarReserva(Reserva reserva, SqlConnection cn)
+        {
+            string msj = "";
+            try
+            {
+                string comandoHuesped = "UPDATE Huesped SET Cedula=@Cedula, Nombres=@Nombres, " +
+                                        "Nacionalidad=@Nacionalidad, Correo=@Correo, Telefono=@Telefono " +
+                                        "WHERE Id_Huesped=@Id_Huesped AND Estado='A'";
+                cmd = new SqlCommand(comandoHuesped, cn);
+                cmd.Parameters.AddWithValue("@Cedula", reserva.Huesped.Cedula);
+                cmd.Parameters.AddWithValue("@Nombres", reserva.Huesped.Nombres);
+                cmd.Parameters.AddWithValue("@Nacionalidad", reserva.Huesped.Nacionalidad);
+                cmd.Parameters.AddWithValue("@Correo", reserva.Huesped.Correo);
+                cmd.Parameters.AddWithValue("@Telefono", reserva.Huesped.Celular);
+                cmd.Parameters.AddWithValue("@Id_Huesped", reserva.Huesped.Id_Huesped);
+                cmd.ExecuteNonQuery();
+
+                string comandoReserva = "UPDATE Reserva SET Fecha_Llegada=@Fecha_Llegada, Fecha_Salida=@Fecha_Salida, " +
+                                        "Cantidad_Adulto=@Cantidad_Adulto, Cantidad_Ninios=@Cantidad_Ninios, " +
+                                        "Sub_Total=@Sub_Total, Iva=@Iva, Total=@Total " +
+                                        "WHERE Id_Huesped=@Id_Huesped AND Estado='A'";
+                cmd = new SqlCommand(comandoReserva, cn);
+                cmd.Parameters.AddWithValue("@Fecha_Llegada", reserva.Fecha_Llegada);
+                cmd.Parameters.AddWithValue("@Fecha_Salida", reserva.Fecha_Salida);
+                cmd.Parameters.AddWithValue("@Cantidad_Adulto", reserva.Cantidad_Adulto);
+                cmd.Parameters.AddWithValue("@Cantidad_Ninios", reserva.Cantidad_Ninios);
+                cmd.Parameters.AddWithValue("@Sub_Total", reserva.Sub_Total);
+                cmd.Parameters.AddWithValue("@Iva", reserva.Iva);
+                cmd.Parameters.AddWithValue("@Total", reserva.Total);
+                cmd.Parameters.AddWithValue("@Id_Huesped", reserva.Huesped.Id_Huesped);
+                cmd.ExecuteNonQuery();
+
+                msj = "1";
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+                msj = "0" + ex.Message;
+            }
+            return msj;
+        }
+
+        // LISTAR RESERVAS
         public List<Reserva> ConsultarReserva(SqlConnection cn)
         {
             List<Reserva> lista = new List<Reserva>();
             Reserva reserva = null;
-            String comando = @"SELECT 
-                r.Id_Reserva, r.Fecha_Llegada, r.Fecha_Salida, r.Fecha_De_Reserva,
-                r.Cantidad_Adulto, r.Cantidad_Ninios, r.Sub_Total, r.Iva, r.Total,
-                r.Id_Huesped, r.Id_Habitacion, r.Id_Servicio,
-                h.Cedula, h.Nombres, h.Nacionalidad, h.Correo, h.Telefono,
-                hab.Num_Habitacion, hab.Num_Piso, hab.Tipo_Habitacion, 
-                hab.Cant_Camas, hab.Cant_Baños, hab.Precio,
-                s.Nombre_Servicio, s.Precio AS Precio
-                FROM Reserva r
-                LEFT JOIN Huesped h ON r.Id_Huesped = h.Id_Huesped
-                LEFT JOIN Habitacion hab ON r.Id_Habitacion = hab.Id_Habitacion
-                LEFT JOIN Servicio s ON r.Id_Servicio = s.Id_Servicio
-                WHERE r.Estado = 'A'"; 
-            //se intento implementar el "SELECT * FROM reserva WHERE estado= 'A' pero no recogia todo la informacion en la tabla del formulario
-            //y tube que implementar un join" 
+            String comando =  "SELECT r.Id_Reserva, r.Fecha_Llegada, r.Fecha_Salida, r.Fecha_De_Reserva, " +
+                 "r.Cantidad_Adulto, r.Cantidad_Ninios, r.Sub_Total, r.Iva, r.Total, " +
+                 "r.Id_Huesped, r.Id_Habitacion, r.Id_Servicio, h.Cedula, h.Nombres, " +
+                 "h.Nacionalidad, h.Correo, h.Telefono, hab.Num_Habitacion, hab.Num_Piso, " +
+                 "hab.Tipo_Habitacion, hab.Cant_Camas, hab.Cant_Baños, hab.Precio, " +
+                 "s.Nombre_Servicio, s.Precio AS Precio FROM Reserva r " +
+                 "LEFT JOIN Huesped h ON r.Id_Huesped=h.Id_Huesped " +
+                 "LEFT JOIN Habitacion hab ON r.Id_Habitacion=hab.Id_Habitacion " +
+                 "LEFT JOIN Servicio s ON r.Id_Servicio=s.Id_Servicio " +
+                 "WHERE r.Estado='A'";
             cmd = new SqlCommand();
             SqlDataReader tablaVirtual = null;
             try
@@ -109,6 +149,7 @@ namespace Datos
             return lista;
         }
 
+        //ELIMINAR RESERVA
         public string EliminarReserva(int Id_Huesped, SqlConnection cn)
         {
             string msj = "";
@@ -136,6 +177,7 @@ namespace Datos
             return msj;
         }
 
+        //REGISTRAR RESERVA
         public string RegistrarReserva(Reserva nuevaReserva, SqlConnection cn)
         {
             string msj = "";

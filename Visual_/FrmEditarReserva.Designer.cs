@@ -68,8 +68,8 @@
             this.lblCorreo = new System.Windows.Forms.Label();
             this.txtNacionalidad = new System.Windows.Forms.TextBox();
             this.txtTelefono = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtCedu = new System.Windows.Forms.TextBox();
+            this.txtNom = new System.Windows.Forms.TextBox();
             this.lblNacionalidad = new System.Windows.Forms.Label();
             this.lblTelefono = new System.Windows.Forms.Label();
             this.lblCi = new System.Windows.Forms.Label();
@@ -434,8 +434,8 @@
             this.grpReserva.Controls.Add(this.lblCorreo);
             this.grpReserva.Controls.Add(this.txtNacionalidad);
             this.grpReserva.Controls.Add(this.txtTelefono);
-            this.grpReserva.Controls.Add(this.textBox1);
-            this.grpReserva.Controls.Add(this.textBox2);
+            this.grpReserva.Controls.Add(this.txtCedu);
+            this.grpReserva.Controls.Add(this.txtNom);
             this.grpReserva.Controls.Add(this.lblNacionalidad);
             this.grpReserva.Controls.Add(this.lblTelefono);
             this.grpReserva.Controls.Add(this.lblCi);
@@ -478,20 +478,20 @@
             this.txtTelefono.Size = new System.Drawing.Size(100, 22);
             this.txtTelefono.TabIndex = 6;
             // 
-            // textBox1
+            // txtCedu
             // 
-            this.textBox1.Location = new System.Drawing.Point(50, 84);
-            this.textBox1.MaxLength = 9;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 5;
+            this.txtCedu.Location = new System.Drawing.Point(50, 84);
+            this.txtCedu.MaxLength = 9;
+            this.txtCedu.Name = "txtCedu";
+            this.txtCedu.Size = new System.Drawing.Size(100, 22);
+            this.txtCedu.TabIndex = 5;
             // 
-            // textBox2
+            // txtNom
             // 
-            this.textBox2.Location = new System.Drawing.Point(89, 29);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 22);
-            this.textBox2.TabIndex = 4;
+            this.txtNom.Location = new System.Drawing.Point(89, 29);
+            this.txtNom.Name = "txtNom";
+            this.txtNom.Size = new System.Drawing.Size(100, 22);
+            this.txtNom.TabIndex = 4;
             // 
             // lblNacionalidad
             // 
@@ -607,8 +607,8 @@
         private System.Windows.Forms.Label lblCorreo;
         private System.Windows.Forms.TextBox txtNacionalidad;
         private System.Windows.Forms.TextBox txtTelefono;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtCedu;
+        private System.Windows.Forms.TextBox txtNom;
         private System.Windows.Forms.Label lblNacionalidad;
         private System.Windows.Forms.Label lblTelefono;
         private System.Windows.Forms.Label lblCi;
