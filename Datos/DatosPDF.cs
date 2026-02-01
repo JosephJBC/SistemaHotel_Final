@@ -37,9 +37,9 @@ namespace Datos
                 Table table = new Table(5).UseAllAvailableWidth();
                 table.AddHeaderCell(new Cell().Add(new Paragraph("Sistema").SetFont(boldFont)));
                 table.AddHeaderCell(new Cell().Add(new Paragraph("Dueño").SetFont(boldFont)));
-                table.AddHeaderCell(new Cell().Add(new Paragraph("Dirección").SetFont(boldFont)));
+                table.AddHeaderCell(new Cell().Add(new Paragraph("Direccion").SetFont(boldFont)));
                 table.AddHeaderCell(new Cell().Add(new Paragraph("Correo").SetFont(boldFont)));
-                table.AddHeaderCell(new Cell().Add(new Paragraph("Teléfono").SetFont(boldFont)));
+                table.AddHeaderCell(new Cell().Add(new Paragraph("Telefono").SetFont(boldFont)));
 
                 foreach (InformacionAutor info in informacion)
                 {
