@@ -55,18 +55,19 @@ namespace Datos
             finally
             {
                 if (document != null)
+                {
                     document.Close();
-                else if (pdf != null)
+                }
+                if (pdf != null)
+                {
                     pdf.Close();
-
+                }
                 if (writer != null)
+                {
                     writer.Close();
+                    writer.Dispose(); 
+                }
             }
-        }
-
-        public bool ExisteArchivo(string rutaPdf)
-        {
-            return File.Exists(rutaPdf);
         }
     }
 }

@@ -29,7 +29,7 @@ namespace Visual_
         private Label lblFoto;
         private Button btnGenerarAbrirPdf;
         private ControlPdf ctrlPdf = new ControlPdf();
-        private string rutaPdf = "Informacion .pdf";
+        private string rutaPdf = "Informacion.pdf";
 
         control_Dinamico ctlDinm = new control_Dinamico();
         public FrmGridDinamico()

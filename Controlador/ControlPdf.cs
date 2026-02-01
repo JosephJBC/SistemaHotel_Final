@@ -24,29 +24,15 @@ namespace Controlador
 
             if (res[0] == '1')
             {
-                try
+                InformacionAutor informacion = datosInfo.ConsultarInformacion(con.Cn);
+
+                if (informacion != null)
                 {
-                    InformacionAutor informacion = datosInfo.ConsultarInformacion(con.Cn);
-
-                    if (informacion != null)
-                    {
-                        listaInfo.Add(informacion);
-                    }
-
+                    listaInfo.Add(informacion);
                     datosPdf.GenerarPDF(rutaPdf, listaInfo);
                 }
-                catch (Exception ex)
-                {
-                    throw new Exception("Error al generar PDF: " + ex.Message);
-                }
-                finally
-                {
-                    con.cerrar();
-                }
-            }
-            else if (res[0] == '0')
-            {
-                throw new Exception("Error de conexión: " + res.Substring(1));
+
+                con.cerrar();
             }
         }
     }
