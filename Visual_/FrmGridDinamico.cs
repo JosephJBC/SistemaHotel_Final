@@ -41,7 +41,11 @@ namespace Visual_
 
         private void CrearControlesDinamicamente()
         {
-            int x = 40, y = 30, espacioY = 55, anchoLbl = 160, anchoTxt = 380;
+            int x = 40;
+            int y = 30;
+            int espacioY = 55;
+            int anchoLbl = 160;
+            int anchoTxt = 380;
 
             //TITULO
             lblTitulo = new Label();
