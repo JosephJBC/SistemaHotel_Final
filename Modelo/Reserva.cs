@@ -37,7 +37,7 @@ namespace Modelo
             Iva = 0;
             Total = 0;
         }
-        //METODO PARA CALCUALR EL SUB TOTAL ENTRE HABITACION Y DETALLE DE RESERVA
+
         public double Calcular_Sub_Total()
         {
             Sub_Total = 0;
@@ -60,26 +60,26 @@ namespace Modelo
             }
             return Sub_Total;
         }
-        //METODO PARA CALCULAR EL IVA
+
         public double Calcular_Iva()
         {
             Iva = Sub_Total * 0.12;
             return Iva;
         }
-        //METODO PARA CALCULAR EL TOTAL 
+
         public double Calcular_Total()
         {
             Total = Sub_Total + Iva;
             return Total;
         }
-        //METODO PARA LLAMAR A LOS METODOS SUB TOTAL, IVA Y CALCULAR TOTAL
+
         public void Calcular_Totales()
         {
             Calcular_Sub_Total();
             Calcular_Iva();
             Calcular_Total();
         }
-        //METODO TOSTRING PARA MOSTRAR LAS PROPIEDADES
+
         public override string ToString()
         {
             string nombreCl = (Huesped != null) ? Huesped.Nombres : "Sin asignar";

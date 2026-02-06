@@ -28,7 +28,7 @@ namespace Visual_
             {
                 indice = dgvReserva.SelectedRows[0].Index;
                 cedulaB = dgvReserva.SelectedRows[0].Cells["colCi"].Value?.ToString();
-                DialogResult result = MessageBox.Show("¿Desea eliminar la reserva del huesped con cédula " + cedulaB + "?","Confirmación",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("¿Desea eliminar la reserva del huesped con cedula " + cedulaB + "?","Confirmación",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     admRes.EliminarReserva(cedulaB, dgvReserva);

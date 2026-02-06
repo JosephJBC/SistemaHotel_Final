@@ -19,7 +19,6 @@ namespace Datos
             PdfWriter writer = null;
             PdfDocument pdf = null;
             Document document = null;
-
             try
             {
                 writer = new PdfWriter(rutaPdf);
@@ -37,7 +36,6 @@ namespace Datos
 
                 document.Add(new Paragraph("\n"));
 
-                //Agregar contenido del recibo con formato
                 document.Add(new Paragraph(contenidoRecibo)
                     .SetFont(normalFont)
                     .SetFontSize(10));
@@ -83,17 +81,11 @@ namespace Datos
                     .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER));
 
                 document.Add(new Paragraph("\n"));
-
-                // Crear tabla con el número de columnas del DataGridView
                 Table table = new Table(dgv.Columns.Count).UseAllAvailableWidth();
-
-                // Agregar encabezados desde el DataGridView
                 foreach (DataGridViewColumn col in dgv.Columns)
                 {
                     table.AddHeaderCell(new Cell().Add(new Paragraph(col.HeaderText).SetFont(boldFont)));
                 }
-
-                // Agregar filas desde el DataGridView
                 foreach (DataGridViewRow row in dgv.Rows)
                 {
                     if (!row.IsNewRow)

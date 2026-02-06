@@ -46,22 +46,8 @@
             this.pnlSubMenu = new System.Windows.Forms.Panel();
             this.btnConexion = new System.Windows.Forms.Button();
             this.btnAutor = new System.Windows.Forms.Button();
-            this.reservaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mniRegistrar = new System.Windows.Forms.ToolStripMenuItem();
-            this.listarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listasXNacionalidadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listarXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.eliminarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.acerdaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.auotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.conexionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dinamicoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.panel1.SuspendLayout();
             this.pnlSubMenu.SuspendLayout();
-            this.menuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -74,9 +60,9 @@
             this.panel1.Controls.Add(this.btnListar);
             this.panel1.Controls.Add(this.btnRegistrar);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 30);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(220, 579);
+            this.panel1.Size = new System.Drawing.Size(220, 609);
             this.panel1.TabIndex = 2;
             // 
             // btnAceraDe
@@ -89,7 +75,7 @@
             this.btnAceraDe.ForeColor = System.Drawing.Color.White;
             this.btnAceraDe.ImageKey = "informacion.png";
             this.btnAceraDe.ImageList = this.imageList6;
-            this.btnAceraDe.Location = new System.Drawing.Point(22, 469);
+            this.btnAceraDe.Location = new System.Drawing.Point(22, 499);
             this.btnAceraDe.Name = "btnAceraDe";
             this.btnAceraDe.Size = new System.Drawing.Size(165, 50);
             this.btnAceraDe.TabIndex = 7;
@@ -275,112 +261,6 @@
             this.btnAutor.UseVisualStyleBackColor = false;
             this.btnAutor.Click += new System.EventHandler(this.btnAutor_Click);
             // 
-            // reservaToolStripMenuItem
-            // 
-            this.reservaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mniRegistrar,
-            this.listarToolStripMenuItem,
-            this.eliminarToolStripMenuItem,
-            this.editarToolStripMenuItem,
-            this.salirToolStripMenuItem});
-            this.reservaToolStripMenuItem.Name = "reservaToolStripMenuItem";
-            this.reservaToolStripMenuItem.Size = new System.Drawing.Size(74, 26);
-            this.reservaToolStripMenuItem.Text = "Reserva";
-            // 
-            // mniRegistrar
-            // 
-            this.mniRegistrar.Name = "mniRegistrar";
-            this.mniRegistrar.Size = new System.Drawing.Size(146, 26);
-            this.mniRegistrar.Text = "Registar";
-            this.mniRegistrar.Click += new System.EventHandler(this.mniRegistrar_Click);
-            // 
-            // listarToolStripMenuItem
-            // 
-            this.listarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.listasXNacionalidadToolStripMenuItem,
-            this.listarXToolStripMenuItem});
-            this.listarToolStripMenuItem.Name = "listarToolStripMenuItem";
-            this.listarToolStripMenuItem.Size = new System.Drawing.Size(146, 26);
-            this.listarToolStripMenuItem.Text = "Listar";
-            this.listarToolStripMenuItem.Click += new System.EventHandler(this.listarToolStripMenuItem_Click);
-            // 
-            // listasXNacionalidadToolStripMenuItem
-            // 
-            this.listasXNacionalidadToolStripMenuItem.Name = "listasXNacionalidadToolStripMenuItem";
-            this.listasXNacionalidadToolStripMenuItem.Size = new System.Drawing.Size(233, 26);
-            this.listasXNacionalidadToolStripMenuItem.Text = "Listar X Nacionalidad";
-            // 
-            // listarXToolStripMenuItem
-            // 
-            this.listarXToolStripMenuItem.Name = "listarXToolStripMenuItem";
-            this.listarXToolStripMenuItem.Size = new System.Drawing.Size(233, 26);
-            this.listarXToolStripMenuItem.Text = "Listar X Habitacion";
-            // 
-            // eliminarToolStripMenuItem
-            // 
-            this.eliminarToolStripMenuItem.Name = "eliminarToolStripMenuItem";
-            this.eliminarToolStripMenuItem.Size = new System.Drawing.Size(146, 26);
-            this.eliminarToolStripMenuItem.Text = "Eliminar";
-            this.eliminarToolStripMenuItem.Click += new System.EventHandler(this.eliminarToolStripMenuItem_Click);
-            // 
-            // editarToolStripMenuItem
-            // 
-            this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
-            this.editarToolStripMenuItem.Size = new System.Drawing.Size(146, 26);
-            this.editarToolStripMenuItem.Text = "Editar";
-            this.editarToolStripMenuItem.Click += new System.EventHandler(this.editarToolStripMenuItem_Click);
-            // 
-            // salirToolStripMenuItem
-            // 
-            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(146, 26);
-            this.salirToolStripMenuItem.Text = "Salir";
-            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
-            // 
-            // acerdaDeToolStripMenuItem
-            // 
-            this.acerdaDeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.auotToolStripMenuItem,
-            this.conexionToolStripMenuItem,
-            this.dinamicoToolStripMenuItem});
-            this.acerdaDeToolStripMenuItem.Name = "acerdaDeToolStripMenuItem";
-            this.acerdaDeToolStripMenuItem.Size = new System.Drawing.Size(91, 26);
-            this.acerdaDeToolStripMenuItem.Text = "Acerda de";
-            // 
-            // auotToolStripMenuItem
-            // 
-            this.auotToolStripMenuItem.Name = "auotToolStripMenuItem";
-            this.auotToolStripMenuItem.Size = new System.Drawing.Size(156, 26);
-            this.auotToolStripMenuItem.Text = "Autor";
-            this.auotToolStripMenuItem.Click += new System.EventHandler(this.auotToolStripMenuItem_Click);
-            // 
-            // conexionToolStripMenuItem
-            // 
-            this.conexionToolStripMenuItem.Name = "conexionToolStripMenuItem";
-            this.conexionToolStripMenuItem.Size = new System.Drawing.Size(156, 26);
-            this.conexionToolStripMenuItem.Text = "Conexion";
-            this.conexionToolStripMenuItem.Click += new System.EventHandler(this.conexionToolStripMenuItem_Click);
-            // 
-            // dinamicoToolStripMenuItem
-            // 
-            this.dinamicoToolStripMenuItem.Name = "dinamicoToolStripMenuItem";
-            this.dinamicoToolStripMenuItem.Size = new System.Drawing.Size(156, 26);
-            this.dinamicoToolStripMenuItem.Text = "Dinamico";
-            this.dinamicoToolStripMenuItem.Click += new System.EventHandler(this.dinamicoToolStripMenuItem_Click);
-            // 
-            // menuStrip2
-            // 
-            this.menuStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.reservaToolStripMenuItem,
-            this.acerdaDeToolStripMenuItem});
-            this.menuStrip2.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(800, 30);
-            this.menuStrip2.TabIndex = 1;
-            this.menuStrip2.Text = "menuStrip2";
-            this.menuStrip2.Visible = false;
-            // 
             // FrmSistema
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -388,7 +268,6 @@
             this.ClientSize = new System.Drawing.Size(800, 609);
             this.Controls.Add(this.pnlSubMenu);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.menuStrip2);
             this.Name = "FrmSistema";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema_de_Reserva";
@@ -396,10 +275,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmSistema_FormClosing);
             this.panel1.ResumeLayout(false);
             this.pnlSubMenu.ResumeLayout(false);
-            this.menuStrip2.ResumeLayout(false);
-            this.menuStrip2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -420,18 +296,5 @@
         private System.Windows.Forms.ImageList imageList4;
         private System.Windows.Forms.ImageList imageList5;
         private System.Windows.Forms.ImageList imageList6;
-        private System.Windows.Forms.ToolStripMenuItem reservaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mniRegistrar;
-        private System.Windows.Forms.ToolStripMenuItem listarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem listasXNacionalidadToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem listarXToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem eliminarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem acerdaDeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem auotToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem conexionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem dinamicoToolStripMenuItem;
-        private System.Windows.Forms.MenuStrip menuStrip2;
     }
 }

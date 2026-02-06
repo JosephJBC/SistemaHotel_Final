@@ -9,7 +9,6 @@ namespace Controlador
 {
     public class Adm_Detalle_De_Reserva
     {
-        //LAMAR A SERVICIO
         List<Servicio> listaServicios = new List<Servicio>();
         public Adm_Detalle_De_Reserva()
         {

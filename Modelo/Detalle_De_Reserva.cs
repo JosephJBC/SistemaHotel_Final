@@ -22,7 +22,7 @@ namespace Modelo
             Importe = 0;
             Descripcion = "";
         }
-        //METODO PARA CALCULAR EL IMPRORTE
+
         public double Calcular_Importe() 
         {
             Importe = Cantidad * Precio_Unitario;

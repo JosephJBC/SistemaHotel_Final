@@ -77,12 +77,9 @@ namespace Visual_
 
             try
             {
-                // Generar PDF directamente desde el DataGridView
                 ctrlPdfLista.GenerarPDFDesdeGrid(rutaPdfLista, dgvReserva);
 
                 MessageBox.Show("PDF generado exitosamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                //Abrir PDF
                 ProcessStartInfo psi = new ProcessStartInfo();
                 psi.FileName = rutaPdfLista;
                 psi.UseShellExecute = true;

@@ -57,7 +57,7 @@ namespace Visual_
                     precioServicioActual, indexHab, indexServ); 
                 txtContenido.Text = recibo;
 
-                reservaRegistrada = true; // Marcar que la reserva ha sido registrada
+                reservaRegistrada = true;
                 MessageBox.Show("Reserva realizada con exito", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -134,10 +134,7 @@ namespace Visual_
             try
             {
                 ctrlPdfRecibo.GenerarPDFRecibo(rutaPdfRecibo, txtContenido.Text);
-
                 MessageBox.Show("PDF generado exitosamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                //Abrir PDF
                 ProcessStartInfo psi = new ProcessStartInfo();
                 psi.FileName = rutaPdfRecibo;
                 psi.UseShellExecute = true;

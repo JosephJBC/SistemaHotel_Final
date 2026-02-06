@@ -49,8 +49,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtCi = new System.Windows.Forms.TextBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.rdbNombre = new System.Windows.Forms.RadioButton();
+            this.rdbCedula = new System.Windows.Forms.RadioButton();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnConfirmar = new System.Windows.Forms.Button();
@@ -272,27 +272,27 @@
             this.txtCi.Size = new System.Drawing.Size(176, 22);
             this.txtCi.TabIndex = 6;
             // 
-            // radioButton1
+            // rdbNombre
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(598, 51);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(77, 20);
-            this.radioButton1.TabIndex = 7;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Nombre";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rdbNombre.AutoSize = true;
+            this.rdbNombre.Location = new System.Drawing.Point(598, 51);
+            this.rdbNombre.Name = "rdbNombre";
+            this.rdbNombre.Size = new System.Drawing.Size(77, 20);
+            this.rdbNombre.TabIndex = 7;
+            this.rdbNombre.TabStop = true;
+            this.rdbNombre.Text = "Nombre";
+            this.rdbNombre.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rdbCedula
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(598, 88);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(43, 20);
-            this.radioButton2.TabIndex = 8;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "C.I";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rdbCedula.AutoSize = true;
+            this.rdbCedula.Location = new System.Drawing.Point(598, 88);
+            this.rdbCedula.Name = "rdbCedula";
+            this.rdbCedula.Size = new System.Drawing.Size(43, 20);
+            this.rdbCedula.TabIndex = 8;
+            this.rdbCedula.TabStop = true;
+            this.rdbCedula.Text = "C.I";
+            this.rdbCedula.UseVisualStyleBackColor = true;
             // 
             // btnBuscar
             // 
@@ -302,7 +302,7 @@
             this.btnBuscar.TabIndex = 9;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.button1_Click);
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // btnEditar
             // 
@@ -543,8 +543,8 @@
             this.Controls.Add(this.grpReserva);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.rdbCedula);
+            this.Controls.Add(this.rdbNombre);
             this.Controls.Add(this.txtCi);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.label2);
@@ -590,8 +590,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.TextBox txtCi;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton rdbNombre;
+        private System.Windows.Forms.RadioButton rdbCedula;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnConfirmar;

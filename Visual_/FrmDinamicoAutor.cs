@@ -53,7 +53,6 @@ namespace Visual_
             lblTitulo.TextAlign = ContentAlignment.MiddleCenter;
             this.Controls.Add(lblTitulo);
             y += 60;
-
             //NOMBRE DEL SIS
             lblNombreSistema = new Label();
             lblNombreSistema.Text = "Nombre del Sistema:";
@@ -67,7 +66,6 @@ namespace Visual_
             txtNombreSistema.BackColor = Color.White;
             this.Controls.Add(txtNombreSistema);
             y += espacioY;
-
             //DUEÑ
             lblDuenio = new Label();
             lblDuenio.Text = "Dueño:";
@@ -81,7 +79,6 @@ namespace Visual_
             txtDuenio.BackColor = Color.White;
             this.Controls.Add(txtDuenio);
             y += espacioY;
-
             //DIREC
             lblDireccion = new Label();
             lblDireccion.Text = "Descripcion:";
@@ -95,7 +92,6 @@ namespace Visual_
             txtDireccion.BackColor = Color.White;
             this.Controls.Add(txtDireccion);
             y += espacioY;
-
             //CORR
             lblCorreo = new Label();
             lblCorreo.Text = "Correo Electronico:";
@@ -109,7 +105,6 @@ namespace Visual_
             txtCorreo.BackColor = Color.White;
             this.Controls.Add(txtCorreo);
             y += espacioY;
-
             //TEL
             lblTelefono = new Label();
             lblTelefono.Text = "Telefono:";
@@ -123,7 +118,6 @@ namespace Visual_
             txtTelefono.BackColor = Color.White;
             this.Controls.Add(txtTelefono);
             y += espacioY + 20;
-
             //FOT
             lblFoto = new Label();
             lblFoto.Text = "Fotografia:";

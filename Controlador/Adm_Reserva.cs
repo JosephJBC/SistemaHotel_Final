@@ -118,7 +118,6 @@ namespace Controlador
                 nuevaReserva.detalles_Reserva.Add(detalle);
             }
             nuevaReserva.Calcular_Totales();
-            //Guardar en la lista
             reservas.Add(nuevaReserva);
             RegistarReseraBDD(nuevaReserva); 
             return nuevaReserva.ToString();
@@ -236,6 +235,7 @@ namespace Controlador
             dgvReserva.Rows[indice].Cells["ColIva"].Value = r.Iva.ToString("C2");
             dgvReserva.Rows[indice].Cells["colTotal"].Value = r.Total.ToString("C2");
         }
+
         //LLENAR TABLA 
         public void LlenarTabla(DataGridView dgvReserva)
         {
@@ -262,7 +262,7 @@ namespace Controlador
             cmbHabitacion.Items.Add("Familiar");
             cmbHabitacion.SelectedIndex = 0;
         }
-        // Filtrar por tipo de habitación
+
         public int FiltrarPorTipoHabitacion(string tipoHabitacion, DataGridView dgvReserva)
         {
             dgvReserva.Rows.Clear();
@@ -279,7 +279,7 @@ namespace Controlador
             }
             return numeroFila - 1; 
         }
-        // Filtrar por nacionalidad
+
         public int FiltrarPorNacionalidad(string nacionalidad, DataGridView dgvReserva)
         {
             dgvReserva.Rows.Clear();
@@ -330,7 +330,7 @@ namespace Controlador
             }
         }
 
-        //METODO PARA BUSCAR POR NOMBRO EN EDITAR RESERVA
+
         public int BuscarPorNombre(string nombre, DataGridView dgvReserva)
         {
             dgvReserva.Rows.Clear();
