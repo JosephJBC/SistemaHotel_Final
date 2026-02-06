@@ -142,8 +142,8 @@ namespace Visual_
         }
         private void btnAutor_Click(object sender, EventArgs e)
         {
-            FrmAcercaDe ventanaAutor = new FrmAcercaDe();
-            ventanaAutor.ShowDialog();
+            FrmDinamicoAutor frmDin = new FrmDinamicoAutor();
+            frmDin.ShowDialog();
         }
 
         //boton conexion antiguo del menuItem
@@ -163,11 +163,6 @@ namespace Visual_
             FrmGridDinamico frmDin = new FrmGridDinamico();
             frmDin.ShowDialog();
             */
-        }
-        private void btnDinamico_Click(object sender, EventArgs e)
-        {
-            FrmGridDinamico frmDin = new FrmGridDinamico();
-            frmDin.ShowDialog();
         }
 
         private void btnAceraDe_Click(object sender, EventArgs e)

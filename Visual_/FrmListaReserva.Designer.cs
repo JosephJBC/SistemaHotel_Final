@@ -51,6 +51,7 @@
             this.lblHabitacion = new System.Windows.Forms.Label();
             this.cmbHabitacion = new System.Windows.Forms.ComboBox();
             this.btnHabitacion = new System.Windows.Forms.Button();
+            this.btnGenerarPdf = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReserva)).BeginInit();
             this.SuspendLayout();
             // 
@@ -265,11 +266,25 @@
             this.btnHabitacion.UseVisualStyleBackColor = true;
             this.btnHabitacion.Click += new System.EventHandler(this.btnHabitacion_Click);
             // 
+            // btnGenerarPdf
+            // 
+            this.btnGenerarPdf.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnGenerarPdf.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerarPdf.ForeColor = System.Drawing.Color.White;
+            this.btnGenerarPdf.Location = new System.Drawing.Point(600, 298);
+            this.btnGenerarPdf.Name = "btnGenerarPdf";
+            this.btnGenerarPdf.Size = new System.Drawing.Size(185, 43);
+            this.btnGenerarPdf.TabIndex = 14;
+            this.btnGenerarPdf.Text = "Generar pdf";
+            this.btnGenerarPdf.UseVisualStyleBackColor = false;
+            this.btnGenerarPdf.Click += new System.EventHandler(this.btnGenerarPdf_Click);
+            // 
             // FrmListaReserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1356, 368);
+            this.Controls.Add(this.btnGenerarPdf);
             this.Controls.Add(this.btnHabitacion);
             this.Controls.Add(this.cmbHabitacion);
             this.Controls.Add(this.lblHabitacion);
@@ -312,5 +327,6 @@
         private System.Windows.Forms.Label lblHabitacion;
         private System.Windows.Forms.ComboBox cmbHabitacion;
         private System.Windows.Forms.Button btnHabitacion;
+        private System.Windows.Forms.Button btnGenerarPdf;
     }
 }

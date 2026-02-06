@@ -1,6 +1,6 @@
 ﻿namespace Visual_
 {
-    partial class FrmGridDinamico
+    partial class FrmDinamicoAutor
     {
         /// <summary>
         /// Required designer variable.

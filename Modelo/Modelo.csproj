@@ -49,7 +49,7 @@
     <Compile Include="Habitacion.cs" />
     <Compile Include="Huesped.cs" />
     <Compile Include="Detalle_De_Reserva.cs" />
-    <Compile Include="InformacionAutor.cs" />
+    <Compile Include="Informacion_Autor.cs" />
     <Compile Include="Reserva.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicio.cs" />

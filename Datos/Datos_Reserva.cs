@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Datos
 {
-    public class DatosReserva 
+    public class Datos_Reserva 
     {
         SqlCommand cmd = null;
 

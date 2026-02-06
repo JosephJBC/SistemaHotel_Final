@@ -55,6 +55,7 @@
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.grpRegistro = new System.Windows.Forms.GroupBox();
             this.txtContenido = new System.Windows.Forms.TextBox();
+            this.btnGenerarPdf = new System.Windows.Forms.Button();
             this.grpReserva.SuspendLayout();
             this.grpHabitacion.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -317,7 +318,7 @@
             this.btnConfirmar.BackColor = System.Drawing.Color.SteelBlue;
             this.btnConfirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirmar.ForeColor = System.Drawing.Color.White;
-            this.btnConfirmar.Location = new System.Drawing.Point(304, 754);
+            this.btnConfirmar.Location = new System.Drawing.Point(142, 754);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(185, 43);
             this.btnConfirmar.TabIndex = 9;
@@ -344,11 +345,25 @@
             this.txtContenido.Size = new System.Drawing.Size(729, 124);
             this.txtContenido.TabIndex = 0;
             // 
+            // btnGenerarPdf
+            // 
+            this.btnGenerarPdf.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnGenerarPdf.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerarPdf.ForeColor = System.Drawing.Color.White;
+            this.btnGenerarPdf.Location = new System.Drawing.Point(468, 754);
+            this.btnGenerarPdf.Name = "btnGenerarPdf";
+            this.btnGenerarPdf.Size = new System.Drawing.Size(185, 43);
+            this.btnGenerarPdf.TabIndex = 13;
+            this.btnGenerarPdf.Text = "Generar pdf";
+            this.btnGenerarPdf.UseVisualStyleBackColor = false;
+            this.btnGenerarPdf.Click += new System.EventHandler(this.btnGenerarPdf_Click);
+            // 
             // frmReserv
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 809);
+            this.Controls.Add(this.btnGenerarPdf);
             this.Controls.Add(this.grpRegistro);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.grpServicios);
@@ -409,5 +424,6 @@
         private System.Windows.Forms.Label lblCorreo;
         private System.Windows.Forms.GroupBox grpRegistro;
         private System.Windows.Forms.TextBox txtContenido;
+        private System.Windows.Forms.Button btnGenerarPdf;
     }
 }

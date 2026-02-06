@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,8 @@ namespace Visual_
     public partial class FrmListaReserva : Form
     {
         Adm_Reserva admRes = new Adm_Reserva();
+        private Control_Pdf ctrlPdfLista = new Control_Pdf(); 
+        private string rutaPdfLista = "Lista_Reservas.pdf"; 
         public FrmListaReserva()
         {
             InitializeComponent();
@@ -61,6 +64,36 @@ namespace Visual_
             else
             {
                 MessageBox.Show("Se encontraron " + resultados + " reserva(s)", "Resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnGenerarPdf_Click(object sender, EventArgs e)
+        {
+            if (dgvReserva.Rows.Count == 0)
+            {
+                MessageBox.Show("No hay reservas para imprimir", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                // Generar PDF directamente desde el DataGridView
+                ctrlPdfLista.GenerarPDFDesdeGrid(rutaPdfLista, dgvReserva);
+
+                MessageBox.Show("PDF generado exitosamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                //Abrir PDF
+                ProcessStartInfo psi = new ProcessStartInfo();
+                psi.FileName = rutaPdfLista;
+                psi.UseShellExecute = true;
+                Process.Start(psi);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al generar el PDF: " + ex.Message,
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
             }
         }
     }

@@ -11,28 +11,28 @@ using System.Windows.Forms;
 
 namespace Controlador
 {
-    public class control_Dinamico
+    public class Control_Dinamico_Autor
     {
         conexion con = null;
-        DatosInformacionAutor datosInfo = null;
+        DatosDinamicoAutor datosInfo = null;
 
         public void LlenarInformacionAutor(TextBox txtNombreSistema, TextBox txtDuenio, TextBox txtDireccion, TextBox txtCorreo, TextBox txtTelefono, PictureBox picFoto)
         {
             con = new conexion();
             string res = con.conectar();
-            datosInfo = new DatosInformacionAutor();
+            datosInfo = new DatosDinamicoAutor();
 
             if (res[0] == '1')
             {
                 try
                 {
-                    InformacionAutor info = datosInfo.ConsultarInformacion(con.Cn);
+                    Informacion_Autor info = datosInfo.ConsultarInformacion(con.Cn);
 
                     if (info != null)
                     {
                         txtNombreSistema.Text = info.Nombre_Sistema;
                         txtDuenio.Text = info.Duenio;
-                        txtDireccion.Text = info.Direccion;
+                        txtDireccion.Text = info.Descripcion;
                         txtCorreo.Text = info.Correo;
                         txtTelefono.Text = info.Telefono;
                         if (!string.IsNullOrEmpty(info.Ruta_Foto) && File.Exists(info.Ruta_Foto))

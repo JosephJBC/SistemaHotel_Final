@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,9 @@ namespace Visual_
         Adm_Detalle_De_Reserva adm_Detalle_De_Reserva = new Adm_Detalle_De_Reserva();
         double precioHabitacionActual = 0;
         double precioServicioActual = 0;
+        private Control_Pdf ctrlPdfRecibo = new Control_Pdf();
+        private string rutaPdfRecibo = "Recibo_Reserva.pdf";
+        private bool reservaRegistrada = false;
         public frmReserv()
         {
             InitializeComponent();
@@ -52,6 +56,8 @@ namespace Visual_
                     fechaLlegada, fechaSalida, adultos, ninos, precioHabitacionActual, 
                     precioServicioActual, indexHab, indexServ); 
                 txtContenido.Text = recibo;
+
+                reservaRegistrada = true; // Marcar que la reserva ha sido registrada
                 MessageBox.Show("Reserva realizada con exito", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -115,6 +121,36 @@ namespace Visual_
             double subTotal = (precioHabitacionActual * dias) + precioServicioActual;
             double iva = subTotal * 0.12;
             double total = subTotal + iva;
+        }
+
+        private void btnGenerarPdf_Click(object sender, EventArgs e)
+        {
+            if (!reservaRegistrada || string.IsNullOrEmpty(txtContenido.Text))
+            {
+                MessageBox.Show("Primero debe registrar una reserva", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                ctrlPdfRecibo.GenerarPDFRecibo(rutaPdfRecibo, txtContenido.Text);
+
+                MessageBox.Show("PDF generado exitosamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                //Abrir PDF
+                ProcessStartInfo psi = new ProcessStartInfo();
+                psi.FileName = rutaPdfRecibo;
+                psi.UseShellExecute = true;
+                Process.Start(psi);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al generar el PDF: " + ex.Message,
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+            }
+
         }
     }
 }

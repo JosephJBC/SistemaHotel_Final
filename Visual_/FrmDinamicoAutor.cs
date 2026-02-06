@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace Visual_
 {
-    public partial class FrmGridDinamico : Form
+    public partial class FrmDinamicoAutor : Form
     {
         private Label lblTitulo;
         private Label lblNombreSistema;
@@ -27,12 +27,9 @@ namespace Visual_
         private TextBox txtTelefono;
         private PictureBox picFoto;
         private Label lblFoto;
-        private Button btnGenerarAbrirPdf;
-        private ControlPdf ctrlPdf = new ControlPdf();
-        private string rutaPdf = "Informacion.pdf";
 
-        control_Dinamico ctlDinm = new control_Dinamico();
-        public FrmGridDinamico()
+        Control_Dinamico_Autor ctlDinm = new Control_Dinamico_Autor();
+        public FrmDinamicoAutor()
         {
             InitializeComponent();
             CrearControlesDinamicamente();
@@ -47,7 +44,7 @@ namespace Visual_
             int anchoLbl = 160;
             int anchoTxt = 380;
 
-            //TITULO
+            //TIT
             lblTitulo = new Label();
             lblTitulo.Text = "Informacon del Sistema y Autor";
             lblTitulo.Font = new Font("Segoe UI", 10, FontStyle.Bold);
@@ -57,7 +54,7 @@ namespace Visual_
             this.Controls.Add(lblTitulo);
             y += 60;
 
-            //NOMBRE DEL SISTEMA
+            //NOMBRE DEL SIS
             lblNombreSistema = new Label();
             lblNombreSistema.Text = "Nombre del Sistema:";
             lblNombreSistema.Location = new Point(x, y);
@@ -71,7 +68,7 @@ namespace Visual_
             this.Controls.Add(txtNombreSistema);
             y += espacioY;
 
-            //DUEÑO
+            //DUEÑ
             lblDuenio = new Label();
             lblDuenio.Text = "Dueño:";
             lblDuenio.Location = new Point(x, y);
@@ -85,9 +82,9 @@ namespace Visual_
             this.Controls.Add(txtDuenio);
             y += espacioY;
 
-            //DIRECCION
+            //DIREC
             lblDireccion = new Label();
-            lblDireccion.Text = "Direccion:";
+            lblDireccion.Text = "Descripcion:";
             lblDireccion.Location = new Point(x, y);
             lblDireccion.Size = new Size(anchoLbl, 28);
             this.Controls.Add(lblDireccion);
@@ -99,7 +96,7 @@ namespace Visual_
             this.Controls.Add(txtDireccion);
             y += espacioY;
 
-            //CORREO
+            //CORR
             lblCorreo = new Label();
             lblCorreo.Text = "Correo Electronico:";
             lblCorreo.Location = new Point(x, y);
@@ -113,7 +110,7 @@ namespace Visual_
             this.Controls.Add(txtCorreo);
             y += espacioY;
 
-            //TELEFONO
+            //TEL
             lblTelefono = new Label();
             lblTelefono.Text = "Telefono:";
             lblTelefono.Location = new Point(x, y);
@@ -127,7 +124,7 @@ namespace Visual_
             this.Controls.Add(txtTelefono);
             y += espacioY + 20;
 
-            //FOTO
+            //FOT
             lblFoto = new Label();
             lblFoto.Text = "Fotografia:";
             lblFoto.Location = new Point(x, y);
@@ -140,39 +137,11 @@ namespace Visual_
             picFoto.BackColor = Color.LightGray;
             this.Controls.Add(picFoto);
             y += 180;
-
-            btnGenerarAbrirPdf = new Button();
-            btnGenerarAbrirPdf.Text = "Generar y Abrir PDF";
-            btnGenerarAbrirPdf.Location = new Point(x + 180, y + 20);
-            btnGenerarAbrirPdf.Size = new Size(200, 40);
-            btnGenerarAbrirPdf.Click += BtnGenerarPdf_Click;
-            this.Controls.Add(btnGenerarAbrirPdf);
         }
 
-        //CARGAR DATOS
         private void CargarDatos()
         {
             ctlDinm.LlenarInformacionAutor(txtNombreSistema, txtDuenio, txtDireccion, txtCorreo, txtTelefono, picFoto);
-        }
-
-        private void BtnGenerarPdf_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                ctrlPdf.GenerarPDF(rutaPdf);
-                //Codigo para abrir PDF
-                ProcessStartInfo psi = new ProcessStartInfo();
-                psi.FileName = rutaPdf;
-                psi.UseShellExecute = true;
-                Process.Start(psi);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al generar el PDF: " + ex.Message,
-                                "Error",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-            }
         }
     }
 }

@@ -17,17 +17,16 @@ namespace Controlador
         List<Habitacion> listaHabitaciones = new List<Habitacion>();
         public object llenarTablar;
         conexion con = null;
-        DatosReserva datosR = null;
+        Datos_Reserva datosR = null;
         public Adm_Reserva()
         {
             ConsultarReservasBBD();
         }
-
         private void ConsultarReservasBBD()
         {
             con = new conexion();
             string res = con.conectar();
-            datosR = new DatosReserva();
+            datosR = new Datos_Reserva();
             if (res[0] == '1')
             {
                 reservas = datosR.ConsultarReserva(con.Cn);
@@ -310,7 +309,7 @@ namespace Controlador
         {
             con = new conexion();
             string res = con.conectar();
-            datosR = new DatosReserva();
+            datosR = new Datos_Reserva();
             string resp = "";
             if (res[0] == '1')
             {
@@ -445,7 +444,7 @@ namespace Controlador
         {
             con = new conexion();
             string res = con.conectar();
-            datosR = new DatosReserva();
+            datosR = new Datos_Reserva();
             string resp = "";
             if (res[0] == '1')
             {
@@ -470,7 +469,7 @@ namespace Controlador
         {
             con = new conexion();
             string res = con.conectar();
-            datosR = new DatosReserva();
+            datosR = new Datos_Reserva();
             string resp = "";
             if (res[0] == '1')
             {
