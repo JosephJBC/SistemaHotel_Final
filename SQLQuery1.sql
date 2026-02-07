@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [Reserva]    Script Date: 6/2/2026 20:01:23 ******/
+/****** Object:  Database [Reserva]    
 CREATE DATABASE [Reserva]
  CONTAINMENT = NONE
  ON  PRIMARY 
