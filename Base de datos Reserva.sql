@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [Reserva]    
+/****** Object:  Database [Reserva]    ******/
 CREATE DATABASE [Reserva]
  CONTAINMENT = NONE
  ON  PRIMARY 
